@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>注册页面</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	$(function (){
+		 var fal= false;
+		 $("#username").blur(function(){			
+			 var name=$(this).val();//获得当前元素的值
+			$.post("/MyFirstWeb/Register/UsernameVerify.do",{username:name},function(data){
+				
+				 var span=$("#s_username");
+				 if(data.userExsit){	 
+					 span.css("color","red");
+					 span.html(data.msg);
+					 fal=false;
+				 }else{
+					 if(name==""){
+						 span.css("color","red");
+						 span.html("用户名不能为空");
+					 }
+					 else{
+					 span.css("color","green");
+					 span.html(data.msg);
+					 fal=true;
+					 }
+				 } 
+			 },"json");
+		 });
+		 $("#userpassword").blur(function(){
+			 var text=$(this).val();
+			 var regular=/^(?![0-9]*$)[a-zA-Z0-9]{6,16}$/;
+			 var span=$("#s_password")
+			 if(text==""){
+				 span.css("color","red");
+				 span.html("密码不能为空");
+			 }else if(!regular.test(text)){
+				 span.css("color","red");
+				 span.html("密码长度在6——16之间,由数字和字母组成，不能是纯数字");
+			 }else{
+				 span.html("");
+			 }
+		 });
+		 $("#reuserpassword").blur(function(){
+			 var text=$(this).val();
+			 var span=$("#s_repassword");
+			 
+			 var password=$("#userpassword").val();
+			 if(text==""){
+				 span.css("color","red");
+				 span.html("确认密码不能为空");
+			 }else if(password!=text){
+				 span.css("color","red");
+				 span.html("两次密码输入不同");
+			 }else{
+				 span.html("");
+			 }
+			
+		 });
+		 $("#sub").click(function(){
+			 var s_named=$("#s_username");
+			 var s_password=$("#s_password");
+			 var s_repassword=$("#s_repassword");			
+			 var span= $("#s_sub");
+			 if(fal && s_password.text()=="" && s_repassword.text()=="" && $("#userpassword").val()!=""){
+				 $("#f_sub").submit();
+			 }else{ 
+				
+				 span.css("color","red");
+				 span.html("输入有误");
+			 } 
+		 });
+	});
+</script>
+</head>
+<body>
+		<form id="f_sub" action="/MyFirstWeb/Register/UsernameRegister.do"  method="post">
+			用户名&nbsp;<input type="text" name="name"  size="20" id="username"/><spqn id ="s_username"></spqn>
+			<br>
+		   	密码&nbsp;&nbsp;<input type="password"   name="password" size="20" id="userpassword"/><spqn id ="s_password"></spqn>
+		   	<br>
+		   	确认密码&nbsp;&nbsp;<input type="password"   size="20" id="reuserpassword"/><spqn id ="s_repassword"></spqn>
+		   	<br>
+			<input type="button" id="sub" value="注册"/><spqn id ="s_sub"></spqn>
+			<br>
+			
+		</form>
+		<br>
+		
+</body>
+</html>
