@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <!-- 配置springmvc模型 -->
   <servlet>
     <servlet-name>SpringMvc</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:applicationContext.xml</param-value>
+      <param-value>classpath:springMVC.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
@@ -13,6 +14,7 @@
     <servlet-name>SpringMvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <!--  注册字符编码过滤器-->
   <filter>
 	    <filter-name>CharacterEncoding</filter-name>
 		<filter-class>
@@ -33,4 +35,12 @@
 		<filter-name>CharacterEncoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:resource/spring-*.xml</param-value>
+	</context-param>
+	<!--注册ServerContext监听器  -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 </web-app>

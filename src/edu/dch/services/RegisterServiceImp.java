@@ -1,11 +1,12 @@
 package edu.dch.services;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Component;
 
 import edu.dch.bean.Userlogin;
 import edu.dch.dao.IUserLoginDao;
 import edu.dch.utils.MybatisSqlSessionutils;
-
+@Component("RegisterServiceImp")
 public class RegisterServiceImp implements IRegisterService {
 	public IUserLoginDao  userLoginDao;
 	private SqlSession session;

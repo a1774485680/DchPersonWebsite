@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../js/vue2.6.10.js"></script>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<title>Insert title here</title>
+
+<script type="text/javascript">
+	$(function () {
+		alert("cs");
+		var app = new Vue({
+			  el: '#app',
+			  data: {
+			    message: 'Hello Vue!'
+			  }
+		});
+	});
+	
+</script>
+</head>
+<body>
+
+<div id="app">
+  {{ message }}
+</div>
+
+</body>
+</html>

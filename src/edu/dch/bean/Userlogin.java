@@ -1,5 +1,8 @@
 package edu.dch.bean;
 
+import org.springframework.stereotype.Component;
+
+@Component("Userlogin")
 public class Userlogin {
 	String username;
 	String userpassword;

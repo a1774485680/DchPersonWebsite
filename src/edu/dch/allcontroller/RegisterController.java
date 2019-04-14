@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.map.HashedMap;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,7 +23,8 @@ import net.sf.json.JSONObject;
 public class RegisterController {
 	IRegisterService registetServices;
 	public RegisterController(){
-		registetServices=new RegisterServiceImp();
+		ApplicationContext app=new ClassPathXmlApplicationContext("MyFirstWeb/src/resource/spring-Dao.xml");
+		registetServices=(IRegisterService) app.getBean("RegisterServiceImp");
 	}
 	@RequestMapping("/UsernameVerify.do")
 	public void usernameVerify(String username,HttpServletResponse response ) throws IOException{
