@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>文章</title>
+	<link rel="stylesheet" type="text/css" href="style-css/passage.css"/>
+	<script src="../js/vue2.6.10.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+	
+	<script type="text/javascript">
+	alert("cs12");
+	$(function (){
+		$.post()
+		 var arr = [ "div1", "div2", "div3", "div4","div5","div6","div7","div8","div9","div10"];
+		 var arrspan=["span1","span2","span3","span4"]
+		 $.each(arr, function(){     
+		    var i=this; 
+		   	$("<div />",{
+				id : this,
+				name : "newName",
+				width : "100%",
+				height : "150px",
+				
+				click : function() {
+					console.log("div");
+				}
+			}).appendTo($("#manAndinfo"));
+			$("#"+i).css("border","1px solid red");
+			$("#"+i).css("margin-top","10px");
+			$.each(arrspan,function(){
+				var j=this;
+				
+				$("<span />",{
+					id : i+"-span"+j,
+					name : "newName",
+					width : "100px",
+					height : "20px",
+					
+					click : function() {
+						console.log("div");
+					}
+				}).appendTo($("#"+i));
+				$("#"+i+"-span"+j).css("border","1px solid red");
+			    
+				$("#"+i+"-span"+j).css("margin-bottom","20px");
+				 $("#"+i+"-span"+j).css("float","left");
+				$("#"+i+"-span"+j).css("position ","relative");
+				$("#"+i+"-span"+j).css("margin-left","50px");
+				
+			})
+			
+		 });
+			
+			
+		
+	});
+	</script>
+</head>
+<body>
+	<div id="head">
+		<div id="head-ul">
+			<ul >
+				<li class="head-li"><a class="one" href="#home">首页</a></li>
+				<li class="head-li"><a class="one" href="#news">博客文章</a></li>
+				<li class="head-li"><a class="one" href="#contact">精彩视频</a></li>
+				<li class="head-li"><a class="one" href="#about">下载资料</a></li>
+			</ul>
+		</div>
+		<div id="search">
+			<input type="text" size="30">
+			<button >搜索</button>
+		</div>
+		<div id="head-ul-right">
+			<ul >
+				<li class="head-li"><a class="one" href="#home">登陆</a></li>
+				<li class="head-li"><a class="one" href="#news">历史</a></li>
+				<li class="head-li"><a class="one" href="#contact">消息</a></li>
+				<li class="head-li"><a class="one" href="#about">动态</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="manAndinfo">
+		
+		
+	</div>
+	
+</body>
+</html>

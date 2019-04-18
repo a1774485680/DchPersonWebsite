@@ -1,0 +1,82 @@
+	#search{
+		float: left;
+		position: relative;
+		margin-left: 100px;
+	}
+	#search input{
+		margin-top: 14px;
+	}
+	#head-ul{
+		margin-left: 50px;
+		width: 600px;
+		
+		float: left;
+	}
+    .head-li{
+    	position: relative;
+    	float: left;
+    	list-style: none;
+    	
+    	left: 20px;
+    	margin-top: 10px;
+
+    }
+    #head-ul a:link,a:visited{
+		display:block;
+		width:120px;
+		font-weight:bold;
+		color:#FFFFFF;
+		background-color:#bebebe;
+		text-align:center;
+		padding:4px;
+		text-decoration:none;
+		text-transform:uppercase;
+	}
+	#head-ul a:hover,a:active
+	{
+		background-color:#cc0000;
+	}
+	#head-ul-right{
+		margin-right:  50px;
+		width: 300px;
+		
+		float: right;
+	}
+	#head-ul-right a:link,a:visited{
+		display:block;
+		width:60px;
+		font-weight:bold;
+		color:#FFFFFF;
+		background-color:#bebebe;
+		text-align:center;
+		padding:4px;
+		text-decoration:none;
+		text-transform:uppercase;
+	}
+	#head-ul-right a:hover,a:active
+	{
+		background-color:#cc0000;
+	}
+	body{
+			
+			background-color: rgb(235,237,239);
+		}
+		*{
+			padding: 0px;
+			margin: 0px;
+		}
+		#head{
+			background: rgb(255,255,255);
+			height: 50px;
+			box-shadow: 0 2px 4px 0 rgba(0,0,0,.05);
+			min-width: 1350px;
+		}
+		#manAndinfo{
+			margin:15px auto;
+			width: 1000px;
+			height:1800px;
+			border: 1px solid red;
+			padding-top:40px;
+			padding-left: 20px;
+			padding-right: 20px;
+		}

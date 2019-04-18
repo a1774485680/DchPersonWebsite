@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 public class RegisterController {
 	IRegisterService registetServices;
 	public RegisterController(){
-		ApplicationContext app=new ClassPathXmlApplicationContext("MyFirstWeb/src/resource/spring-Dao.xml");
+		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
 		registetServices=(IRegisterService) app.getBean("RegisterServiceImp");
 	}
 	@RequestMapping("/UsernameVerify.do")
@@ -40,6 +40,7 @@ public class RegisterController {
 		}
 		JSONObject myJsom=JSONObject.fromObject(map);
 		String jsonString=myJsom.toString();
+		System.out.println(jsonString);
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out =response.getWriter();
 		out.print(jsonString);

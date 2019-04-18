@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dch.dao.IPassageDao">
+	<insert id="insertpassage">
+		insert into passage(uid,Iid,path,ptitle,pdate,cid,plike,pvisit) values(#{uid},#{Iid},#{path},#{ptitle},#{pdate},#{cid},#{plike},#{pvisit})
+	</insert>
+	<select id="SelectPassage" resultType="edu.dch.bean.Passage">
+		select * from passage 
+	</select>
+</mapper>
