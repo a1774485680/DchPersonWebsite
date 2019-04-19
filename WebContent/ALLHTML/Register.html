@@ -9,7 +9,7 @@
 		 $("#username").blur(function(){			
 			 var name=$(this).val();//获得当前元素的值
 			$.post("/MyFirstWeb/Register/UsernameVerify.do",{username:name},function(data){
-				
+				alert(data);
 				 var span=$("#s_username");
 				 if(data.userExsit){	 
 					 span.css("color","red");

@@ -38,9 +38,9 @@ public class PassageLoadImp implements IPassageServices {
 				e.printStackTrace();
 			}
 		
-		System.out.println(a);
 		
-		return null;
+		
+		return a;
 	}
 	
 }

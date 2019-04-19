@@ -5,11 +5,13 @@
 	<link rel="stylesheet" type="text/css" href="style-css/passage.css"/>
 	<script src="../js/vue2.6.10.js"></script>
 	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-	
 	<script type="text/javascript">
 	alert("cs12");
 	$(function (){
-		$.post()
+		$.post("/MyFirstWeb/Passage/passageLoad.do",function(data){
+			var fal=0;
+			
+			alert(data[1].Iid);
 		 var arr = [ "div1", "div2", "div3", "div4","div5","div6","div7","div8","div9","div10"];
 		 var arrspan=["span1","span2","span3","span4"]
 		 $.each(arr, function(){     
@@ -19,40 +21,45 @@
 				name : "newName",
 				width : "100%",
 				height : "150px",
-				
+				class:"mydiv",
 				click : function() {
 					console.log("div");
 				}
 			}).appendTo($("#manAndinfo"));
-			$("#"+i).css("border","1px solid red");
-			$("#"+i).css("margin-top","10px");
+			
 			$.each(arrspan,function(){
 				var j=this;
 				
 				$("<span />",{
 					id : i+"-span"+j,
 					name : "newName",
-					width : "100px",
-					height : "20px",
+					class:"myspan",
 					
 					click : function() {
 						console.log("div");
 					}
 				}).appendTo($("#"+i));
-				$("#"+i+"-span"+j).css("border","1px solid red");
-			    
-				$("#"+i+"-span"+j).css("margin-bottom","20px");
-				 $("#"+i+"-span"+j).css("float","left");
-				$("#"+i+"-span"+j).css("position ","relative");
-				$("#"+i+"-span"+j).css("margin-left","50px");
-				
-			})
+			});
+			$("<h2 />",{
+				id : i+"-h2",
+				class:"myh2",
+			}).appendTo($("#"+i));
 			
 		 });
-			
-			
-		
+		 $.each(arr,function(){
+			 var i=this; 
+			 //alert("#"+i+"-span"+arrspan[0]);
+			 $("#"+i+"-span"+arrspan[0]).html("作者  "+data[fal].uid);
+			 $("#"+i+"-span"+arrspan[1]).html("日期 ："+data[fal].pdate);
+			 $("#"+i+"-span"+arrspan[2]).html("点赞"+data[fal].plike);
+			 $("#"+i+"-span"+arrspan[3]).html("浏览量"+data[fal].pvisit); 
+			 $("#"+i+"-h2").html(data[fal].ptitle);
+			 fal+=1;
+		 });
+		 
+		},"json");	 
 	});
+	
 	</script>
 </head>
 <body>
