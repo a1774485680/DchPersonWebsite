@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import edu.dch.bean.Userlogin;
 import edu.dch.services.IRegisterService;
@@ -47,8 +48,11 @@ public class RegisterController {
 		out.close();
 	}
 	@RequestMapping("/UsernameRegister.do")
-	public void userRegister(String name,String password){
+	public ModelAndView userRegister(String name,String password){
 		System.out.println(name+"  "+password);
 		registetServices.userRegiser(new Userlogin(name,password));
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("redirect:/ALLHTML/passage.html");
+		return mv;
 	}
 }

@@ -4,9 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dch.dao.IPassageDao">
 	<insert id="insertpassage">
-		insert into passage(uid,Iid,path,ptitle,pdate,cid,plike,pvisit) values(#{uid},#{Iid},#{path},#{ptitle},#{pdate},#{cid},#{plike},#{pvisit})
+		insert into passage(uid,Iid,path,ptitle,pdate,plike,pbrief,pvisit,pclassify) values(#{uid},#{Iid},#{path},#{ptitle},#{pdate},#{plike},#{pbrief},#{pvisit},#{pclassify})
 	</insert>
 	<select id="SelectPassage" resultType="edu.dch.bean.Passage">
 		select * from passage 
+	</select>
+	<select id="allcountpassage" resultType="Int">
+		select count(*) from passage where pclassify=#{0}
+	</select>
+	<select id="allcount" resultType="Int">
+		select count(*) from passage 
+	</select>
+	<select id="selectPassageByPage" resultType="edu.dch.bean.Passage">
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid limit #{0} ,10
+	</select>
+	<select id="selectPassageByPageandClassify" resultType="edu.dch.bean.Passage">
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid and pclassify=#{0} limit #{1} ,10
 	</select>
 </mapper>

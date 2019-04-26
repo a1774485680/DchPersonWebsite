@@ -10,9 +10,34 @@ public class Passage {
 	public String path;
 	public String ptitle;
 	public String pdate;
-	public int  cid;
+	public String pclassify;
+	public String pbrief;
 	public int	plike;
 	public int	pvisit;
+	private String username;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public Passage() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Passage(int uid, String iid, String path, String ptitle, String pdate, String pclassify,String pbrief, int plike,
+			int pvisit) {
+		super();
+		this.pbrief=pbrief;
+		this.uid = uid;
+		Iid = iid;
+		this.path = path;
+		this.ptitle = ptitle;
+		this.pdate = pdate;
+		this.pclassify = pclassify;
+		this.plike = plike;
+		this.pvisit = pvisit;
+	}
 	public int getPid() {
 		return pid;
 	}
@@ -49,11 +74,11 @@ public class Passage {
 	public void setPdate(String pdate) {
 		this.pdate = pdate;
 	}
-	public int getCid() {
-		return cid;
+	public String getPclassify() {
+		return pclassify;
 	}
-	public void setCid(int cid) {
-		this.cid = cid;
+	public void setPclassify(String pclassify) {
+		this.pclassify = pclassify;
 	}
 	public int getPlike() {
 		return plike;
@@ -67,28 +92,16 @@ public class Passage {
 	public void setPvisit(int pvisit) {
 		this.pvisit = pvisit;
 	}
-	public Passage() {
-		super();
-		// TODO Auto-generated constructor stub
+	public String getPbrief() {
+		return pbrief;
 	}
-	public Passage(int uid, String iid, String path, String ptitle, String pdate, int cid, int plike, int pvisit) {
-		super();
-		this.uid = uid;
-		Iid = iid;
-		this.path = path;
-		this.ptitle = ptitle;
-		this.pdate = pdate;
-		this.cid = cid;
-		this.plike = plike;
-		this.pvisit = pvisit;
+	public void setPbrief(String pbrief) {
+		this.pbrief = pbrief;
 	}
 	@Override
 	public String toString() {
 		return "Passage [pid=" + pid + ", uid=" + uid + ", Iid=" + Iid + ", path=" + path + ", ptitle=" + ptitle
-				+ ", pdate=" + pdate + ", cid=" + cid + ", plike=" + plike + ", pvisit=" + pvisit + "]";
-	}
-	
-	
-	
-	
+				+ ", pdate=" + pdate + ", pclassify=" + pclassify + ", pbrief=" + pbrief + ", plike=" + plike
+				+ ", pvisit=" + pvisit + "]";
+	}	
 }

@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>×¢²áÒ³Ãæ</title>
-<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-<script type="text/javascript">
-	$(function (){
+$(function (){
 		 var fal= false;
 		 $("#username").blur(function(){			
-			 var name=$(this).val();//»ñµÃµ±Ç°ÔªËØµÄÖµ
+			 var name=$(this).val();//è·å¾—å½“å‰å…ƒç´ çš„å€¼
 			$.post("/MyFirstWeb/Register/UsernameVerify.do",{username:name},function(data){
 				
 				 var span=$("#s_username");
@@ -18,7 +12,7 @@
 				 }else{
 					 if(name==""){
 						 span.css("color","red");
-						 span.html("ÓÃ»§Ãû²»ÄÜÎª¿Õ");
+						 span.html("ç”¨æˆ·åä¸èƒ½ä¸ºç©º");
 					 }
 					 else{
 					 span.css("color","green");
@@ -34,10 +28,10 @@
 			 var span=$("#s_password")
 			 if(text==""){
 				 span.css("color","red");
-				 span.html("ÃÜÂë²»ÄÜÎª¿Õ");
+				 span.html("å¯†ç ä¸èƒ½ä¸ºç©º");
 			 }else if(!regular.test(text)){
 				 span.css("color","red");
-				 span.html("ÃÜÂë³¤¶ÈÔÚ6¡ª¡ª16Ö®¼ä,ÓÉÊı×ÖºÍ×ÖÄ¸×é³É£¬²»ÄÜÊÇ´¿Êı×Ö");
+				 span.html("å¯†ç é•¿åº¦åœ¨6â€”â€”16ä¹‹é—´,ç”±æ•°å­—å’Œå­—æ¯ç»„æˆï¼Œä¸èƒ½æ˜¯çº¯æ•°å­—");
 			 }else{
 				 span.html("");
 			 }
@@ -49,10 +43,10 @@
 			 var password=$("#userpassword").val();
 			 if(text==""){
 				 span.css("color","red");
-				 span.html("È·ÈÏÃÜÂë²»ÄÜÎª¿Õ");
+				 span.html("ç¡®è®¤å¯†ç ä¸èƒ½ä¸ºç©º");
 			 }else if(password!=text){
 				 span.css("color","red");
-				 span.html("Á½´ÎÃÜÂëÊäÈë²»Í¬");
+				 span.html("ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸åŒ");
 			 }else{
 				 span.html("");
 			 }
@@ -68,25 +62,18 @@
 			 }else{ 
 				
 				 span.css("color","red");
-				 span.html("ÊäÈëÓĞÎó");
+				 span.html("è¾“å…¥æœ‰è¯¯");
 			 } 
 		 });
+		 $("#Register").on('click', function () {
+				$("body").append("<div id='mask1'></div>");
+				$("#mask1").addClass("mask1").fadeIn("slow");
+				$("#RegisterDiv").fadeIn("slow");
+				
+		});
+		$(".close_btn1").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {
+				
+				$("#RegisterDiv").fadeOut("fast");
+				$("#mask1").css({ display: 'none' });
+		});
 	});
-</script>
-</head>
-<body>
-		<form id="f_sub" action="/MyFirstWeb/Register/UsernameRegister.do"  method="post">
-			ÓÃ»§Ãû&nbsp;<input type="text" name="name"  size="20" id="username"/><spqn id ="s_username"></spqn>
-			<br>
-		   	ÃÜÂë&nbsp;&nbsp;<input type="password"   name="password" size="20" id="userpassword"/><spqn id ="s_password"></spqn>
-		   	<br>
-		   	È·ÈÏÃÜÂë&nbsp;&nbsp;<input type="password"   size="20" id="reuserpassword"/><spqn id ="s_repassword"></spqn>
-		   	<br>
-			<input type="button" id="sub" value="×¢²á"/><spqn id ="s_sub"></spqn>
-			<br>
-			
-		</form>
-		<br>
-		
-</body>
-</html>

@@ -5,62 +5,13 @@
 	<link rel="stylesheet" type="text/css" href="style-css/passage.css"/>
 	<script src="../js/vue2.6.10.js"></script>
 	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-	<script type="text/javascript">
-	alert("cs12");
-	$(function (){
-		$.post("/MyFirstWeb/Passage/passageLoad.do",function(data){
-			var fal=0;
-			
-			alert(data[1].Iid);
-		 var arr = [ "div1", "div2", "div3", "div4","div5","div6","div7","div8","div9","div10"];
-		 var arrspan=["span1","span2","span3","span4"]
-		 $.each(arr, function(){     
-		    var i=this; 
-		   	$("<div />",{
-				id : this,
-				name : "newName",
-				width : "100%",
-				height : "150px",
-				class:"mydiv",
-				click : function() {
-					console.log("div");
-				}
-			}).appendTo($("#manAndinfo"));
-			
-			$.each(arrspan,function(){
-				var j=this;
-				
-				$("<span />",{
-					id : i+"-span"+j,
-					name : "newName",
-					class:"myspan",
-					
-					click : function() {
-						console.log("div");
-					}
-				}).appendTo($("#"+i));
-			});
-			$("<h2 />",{
-				id : i+"-h2",
-				class:"myh2",
-			}).appendTo($("#"+i));
-			
-		 });
-		 $.each(arr,function(){
-			 var i=this; 
-			 //alert("#"+i+"-span"+arrspan[0]);
-			 $("#"+i+"-span"+arrspan[0]).html("作者  "+data[fal].uid);
-			 $("#"+i+"-span"+arrspan[1]).html("日期 ："+data[fal].pdate);
-			 $("#"+i+"-span"+arrspan[2]).html("点赞"+data[fal].plike);
-			 $("#"+i+"-span"+arrspan[3]).html("浏览量"+data[fal].pvisit); 
-			 $("#"+i+"-h2").html(data[fal].ptitle);
-			 fal+=1;
-		 });
-		 
-		},"json");	 
-	});
-	
-	</script>
+	<script type="text/javascript" src="../js/MyPassage.js"></script>
+	<!--导入登陆  -->
+	<link rel="stylesheet" type="text/css" href="style-css/loginDialog.css"/>
+	<link rel="stylesheet" type="text/css" href="style-css/Register.css"/>
+		<!-- 导入登陆的js -->
+	<script type="text/javascript" src="../js/Login.js"></script>
+	<script type="text/javascript" src="../js/Register.js"></script>
 </head>
 <body>
 	<div id="head">
@@ -78,17 +29,90 @@
 		</div>
 		<div id="head-ul-right">
 			<ul >
-				<li class="head-li"><a class="one" href="#home">登陆</a></li>
-				<li class="head-li"><a class="one" href="#news">历史</a></li>
+				<li class="head-li"><a id="Login" class="one" href="#home">登陆</a></li>
+				<li class="head-li"><a id="Register" class="one" href="#news">注册</a></li>
 				<li class="head-li"><a class="one" href="#contact">消息</a></li>
 				<li class="head-li"><a class="one" href="#about">动态</a></li>
 			</ul>
 		</div>
 	</div>
-	<div id="manAndinfo">
-		
-		
+	<div id="classifyBar">
+		<ul id="ul_classify">
+			<li id="classify-1" onclick="classify(id)">所有</li>
+			<li id="classify-2" onclick="classify(id)">java基础</li>
+			<li id="classify-3" onclick="classify(id)">Spring</li>
+			<li id="classify-4" onclick="classify(id)">SpringMvc</li>
+			<li id="classify-5" onclick="classify(id)">Mybatis</li>
+			<li id="classify-6" onclick="classify(id)">SpringBoot</li>
+			<li id="classify-7" onclick="classify(id)">MySql</li>
+			<li id="classify-8" onclick="classify(id)">Redis</li>
+		</ul>
 	</div>
-	
+	<div id="div-layout">
+		<div id="manAndinfo">
+			
+			
+		</div>
+		<div id="paging">
+			<input type="text" value="1" size="8" id="Tpage">&nbsp;/&nbsp;
+			<span id="pageSpan">1</span>
+			
+			<input type="button" value="跳转" id="Bgo" />
+			<input type="button" value="上页" id="BupPage" />
+			<input type="button" value="下页" id="BdownPage" />
+			<a></a>
+		</div>
+	</div>
+	<!-- 登陆对话框 -->
+	<div id="LoginBox">
+		<div class="row1">
+			登录<a href="javascript:void(0)" title="关闭窗口" class="close_btn" id="closeBtn">×</a>
+		</div>
+		<div class="row">
+			用户名: <span class="inputBox"> <input type="text" id="txtName" placeholder="账号/邮箱" />
+			</span><a href="javascript:void(0)" title="提示" class="warning" id="warn">*</a>
+		</div>
+		<div class="row">
+			密&nbsp;&nbsp;&nbsp;&nbsp;码: <span class="inputBox"> <input type="text" id="txtPwd" placeholder="密码" />
+			</span><a href="javascript:void(0)" title="提示" class="warning" id="warn2">*</a>
+		</div>
+		<div class="row">
+			<a href="#" id="loginbtn">登录</a>
+		</div>
+	</div>
+	<!-- 注册对话框 -->
+	<div id="RegisterDiv">
+		<div class="row1">
+			注册<a href="javascript:void(0)" title="关闭窗口" class="close_btn1" id="closeBtn1">×</a>
+		</div>
+		<div>
+			<form id="f_sub" action="/MyFirstWeb/Register/UsernameRegister.do"  method="post">
+				<div class="row">
+					用户名:&nbsp;&nbsp;<span class="inputBox">
+						<input type="text" name="name"  size="20" id="username" class="inputtxt"/>
+						</span><spqn id ="s_username" ></spqn>
+				</div>
+				<div class="row">
+					密码:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="inputBox">
+						<input type="password"   name="password" size="20" id="userpassword"  class="inputtxt"/>
+						</span><spqn id ="s_password"></spqn>
+				</div>
+			   	<div class="row">
+					确认密码<span class="inputBox">
+						<input type="password"   size="20" id="reuserpassword" class="inputtxt"/>
+						</span><spqn id ="s_repassword"></spqn>
+				</div>
+			   	<div class="row">
+				<input type="button" id="sub" value="注册" class="Bregister"/><spqn id ="s_sub"></spqn>
+				
+				</div>
+			   
+			   	
+				
+				
+			</form>			
+		</div>
+		<br>
+	</div>
 </body>
 </html>
