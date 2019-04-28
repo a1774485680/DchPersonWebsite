@@ -18,5 +18,6 @@
 		<property name="prefix" value="/ALLHTML/"> </property>
 		<property name="suffix" value=".html"></property>
 	</bean>
+
 	<context:component-scan base-package="edu.dch.allcontroller"></context:component-scan>
 </beans>

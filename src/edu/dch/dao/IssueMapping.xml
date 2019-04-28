@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.dch.dao.IIssueDao">
+	<select id="CountAllpage" resultType="Int">
+		SELECT count(*)  from passage ,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} 
+	</select>
+	<select id="SelectByUserName" resultType="String">
+		SELECT ptitle FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} limit 0,10
+	</select>
+	<select id="pageIssue" resultType="String">
+		SELECT ptitle FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} limit #{1},10
+	</select>
+</mapper>

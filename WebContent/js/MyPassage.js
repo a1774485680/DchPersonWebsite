@@ -38,7 +38,14 @@
 				
 		});
 	};
+	
+	//第一加载页面的时候初始化
 	$(function (){
+		//注册发布文章点击事件
+		$("#IssuePassage").on('click', function () {
+			
+			window.open("Issue.html","_self");
+		});
 		$("#"+Nowclassify).css("background-color","#cc0000");//设置第一次加载页面的时候 Nowclassify分类的颜色
 		$.post("/MyFirstWeb/Passage/passageLoad.do",function(data){
 			var fal=0;//记录是第几个div

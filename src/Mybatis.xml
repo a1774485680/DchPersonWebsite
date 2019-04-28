@@ -20,6 +20,9 @@
 	<mappers>
 		<mapper resource="edu/dch/dao/userloginMapping.xml"/>
 		<mapper resource="edu/dch/dao/PassageMapping.xml"/>
+		<mapper resource="edu/dch/dao/loginMapping.xml"/>
+		<mapper resource="edu/dch/dao/IssueMapping.xml"/>
 		
 	</mappers>
+	
 </configuration>

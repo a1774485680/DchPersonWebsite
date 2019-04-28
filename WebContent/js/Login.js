@@ -72,4 +72,16 @@ $(function ($) {
 			$("#mask").css({ display: 'none' });
 			
 		});
+		$("#loginbtn").on('click', function () {
+			var username=$("#txtName").val();
+			var userpassword=$("#txtPwd").val();
+			
+			$.post("/MyFirstWeb/LoginController/login.do",{username:username,userpassword:userpassword},function(data){	
+				if(data.vail==1){
+					window.open("passage.html","_self");
+				}else{
+					alert("账号密码错误");
+				}
+			},"json");
+		});
 	});

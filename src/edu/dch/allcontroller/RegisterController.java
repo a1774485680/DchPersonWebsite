@@ -52,7 +52,7 @@ public class RegisterController {
 		System.out.println(name+"  "+password);
 		registetServices.userRegiser(new Userlogin(name,password));
 		ModelAndView mv=new ModelAndView();
-		mv.setViewName("redirect:/ALLHTML/passage.html");
+		mv.setViewName("redirect:/ALLHTML/NewFile.html");
 		return mv;
 	}
 }

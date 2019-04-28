@@ -29,7 +29,7 @@ public class TestPassage {
 	}
 	@Test
 	public void testone() {
-		passdao.insertpassage(new Passage(1,"sa","c:/sa/sa/sa/sa","中国人1466565","2019/4/1","spring","这个简介很简短",12,12));
+		passdao.insertpassage(new Passage(3,"sa","c:/sa/sa/sa/sa","中国人1466565","2019/4/1","spring","这个简介很简短",12,12));
 	}
 	@Test
 	public void testone123() {
