@@ -1,12 +1,14 @@
 package edu.dch.bean;
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Component;
 
 @Component("Passage")
-public class Passage {
+public class Passage implements Serializable{
 	public int pid;
 	public int uid;
-	public String Iid;
+	public String Iid;//ͼƬid
 	public String path;
 	public String ptitle;
 	public String pdate;

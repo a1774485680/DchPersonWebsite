@@ -1,5 +1,8 @@
 package edu.dch.test;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +13,7 @@ import org.junit.Test;
 import edu.dch.bean.Userlogin;
 import edu.dch.dao.IUserLoginDao;
 import edu.dch.utils.MybatisSqlSessionutils;
+import edu.dch.utils.PassageReageUtil;
 
 
 public class Testone {
@@ -36,4 +40,23 @@ public class Testone {
 	public void testone123() {
 		userLoginDao.insertUserlogin(new Userlogin("ces","12"));
 	}
+	@Test 
+	public void testxx() throws IOException{
+		PassageReageUtil as=new PassageReageUtil();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		System.out.println(df.format(new Date()));
+		as.txtPassageToRead("sa@图片5");
+		SimpleDateFormat df11 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		System.out.println(df11.format(new Date()));
+	}
+	@Test 
+	public void testxx1() throws IOException{
+		PassageReageUtil as=new PassageReageUtil();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		System.out.println(df.format(new Date()));
+		as.txtPassageToRead2("sa@图片5");
+		SimpleDateFormat df11 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		System.out.println(df11.format(new Date()));
+	}
+	
 }

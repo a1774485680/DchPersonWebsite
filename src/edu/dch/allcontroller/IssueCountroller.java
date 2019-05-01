@@ -2,6 +2,8 @@ package edu.dch.allcontroller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.dch.bean.Userlogin;
 import edu.dch.services.IIssueServices;
+import edu.dch.utils.ParamsUtil;
 
 
 @Controller
@@ -91,6 +94,28 @@ public class IssueCountroller {
 		System.out.println("cs"+upPageJson);
 		PrintWriter out =response.getWriter();
 		out.print(upPageJson);
+		out.close();
+	}
+	@RequestMapping("/publish.do")
+	public void publish1(HttpServletResponse response,HttpServletRequest res) throws IOException{		
+		String param = ParamsUtil.getStreamToString(res); // 接收流参数并转成字符串
+		Map<String, String> params = ParamsUtil.getUrlParams(param); 
+		Set<String> keys =params.keySet();   //此行可省略，直接将map.keySet()写在for-each循环的条件中
+		for(String key:keys){
+			System.out.println("key值："+key);
+		}
+		String Pclassify = params.get("Pclassify");
+		String pbrief = params.get("pbrief");
+		String Ptitle = params.get("Ptitle");
+		HttpSession session=res.getSession();
+		res.getInputStream();
+		Userlogin user= (Userlogin)session.getAttribute("user");
+		String html = params.get("textHtml");
+		IssueService.writePassage(user.getUsername(), Ptitle, Pclassify, html, pbrief);	
+		response.setCharacterEncoding("utf-8");
+		String s="1";
+		PrintWriter out =response.getWriter();
+		out.print(s);
 		out.close();
 	}
 	

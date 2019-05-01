@@ -1,50 +1,90 @@
-<!DOCTYPE html>
+О╩©<!DOCTYPE html>
 <html>
 <head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="style-css/Issue.css"/>
+
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="../js/Issue2.js"></script>
-
-<title>╥╒╡╪ндуб</title>
+<script type="text/javascript" src="../js/wangEditor.js"></script>
+<!-- <script type="text/javascript" src="../js/ImagewangEditor.js"></script> -->
+<title>Е▐▒Е╦┐Ф√┤Г╚═</title>
 </head>
 <body>
 	<div id="head">
 			<div id="head-ul">
 				<ul >
-					<li class="head-li"><a class="one" href="#home">йврЁ</a></li>
-					<li class="head-li"><a class="one" href="#news">╥╒╡╪ндуб</a></li>
-					<li class="head-li"><a class="one" href="#contact">╬╚╡ййсф╣</a></li>
-					<li class="head-li"><a class="one" href="#about">обтьвйао</a></li>
+					<li class="head-li"><a class="one" href="passage.html">И╕√И║╣</a></li>
+					<li class="head-li"><a class="one" href="#news">Е▐▒Е╦┐Ф√┤Г╚═</a></li>
+					<li class="head-li"><a class="one" href="#contact">Г╡╬Е╫╘Х╖├И╒▒</a></li>
+					<li class="head-li"><a class="one" href="#about">Д╦▀Х╫╫Х╣└Ф√≥</a></li>
 				</ul>
 			</div>
 			<div id="search">
 				<input type="text" size="30">
-				<button >кякВ</button>
+				<button >Ф░°Г╢╒</button>
 			</div>
 			<div id="head-ul-right">
 				<ul >
-					<li class="head-li"><a id="Login" class="one" href="#home">в╒оЗ</a></li>
-					<li class="head-li"><a class="one" href="#contact">оШо╒</a></li>
-					<li class="head-li"><a class="one" href="#about">╤╞л╛</a></li>
+					<li class="head-li"><a id="Login" class="one" href="#home">ФЁ╗И■─</a></li>
+					<li class="head-li"><a class="one" href="#contact">Ф╤┬Ф│╞</a></li>
+					<li class="head-li"><a class="one" href="#about">Е┼╗Ф─│</a></li>
 				</ul>
 			</div>
-	</div>	
-	<div id="pastIssue">
-		<h2 id="pastH2">
-				ря╥╒╡╪╣дндуб
-		</h2>
-		<div id="pastPtitle"></div>
-		<div id="pastPage">
-			<input type="text" value="1" size="2" id="Tpage">&nbsp;/&nbsp;
-			<span id="pageSpan">1</span>			
-			<input type="button" value="лЬв╙" id="Bgo" />
-			<input type="button" value="иорЁ" id="BupPage" />
-			<input type="button" value="обрЁ" id="BdownPage" />	
-		</div>
 	</div>
-	<div id="nowIssue">
-		
-	</div>		
+	<div class="MinClass">
+		<div id="pastIssue">
+			<h2 id="pastH2">
+					Е╥╡Е▐▒Е╦┐Г └Ф√┤Г╚═
+			</h2>
+			<div id="pastPtitle"></div>
+			<div id="pastPage">
+				<input type="text" value="1" size="2" id="Tpage">&nbsp;/&nbsp;
+				<span id="pageSpan">1</span>			
+				<input type="button" value="Х╥ЁХ╫╛" id="Bgo" />
+				<input type="button" value="Д╦┼И║╣" id="BupPage" />
+				<input type="button" value="Д╦▀И║╣" id="BdownPage" />	
+			</div>
+		</div>
+		<div id="nowIssue">
+			<div id="publish">
+				<a href="#" id="Apublish" class="Ipublish">Е▐▒Е╦┐</a>
+			</div>
+			<div style="  text-align: center;font-size: 50px;font-family: Е█▌Ф√┤Ф╔╥Д╫⌠;">Х╞╥Е▐▒Е╦┐Ф┌╗Г └Ф√┤Г╚═</div>
+			<div id="Ititle">
+				Ф═┤И╒≤: 
+				<span class="IStitle">
+					<input type="text" size="20" id="Iinputtitle"  class="Ititletxt"/>
+				</span>
+				Г╝─Д╩▀:
+				<span class="IStitle">
+					<input type="text" size="60" id="Ibrief"  class="Ititletxt"/>
+				</span>
+				<!-- //"java","spring","springmvc","mybatis","springboot","mysql","redis" -->
+				&nbspГ╠╩Е┬╚<select name="cars" id="Iselect">
+					<option value="java" selected="selected">java</option>
+					<option value="spring">spring</option>
+					<option value="springmvc" >springmvc</option>
+					<option value="mybatis">mybatis</option>
+					<option value="springboot" >springboot</option>
+					<option value="mysql">mysql</option>
+					<option value="redis" >redis</option>
+					</select>
+			</div>
+			  
+			<div id="Ipassage">
+				 
+   			    
+			</div>
+			<!-- <script type="text/javascript">
+			 var E = window.wangEditor;
+			  var editor = new E('#Ipassage');
+			 editor.create();
+			</script> -->
+		</div>		
+			
+	</div>	
 
 </body>
 </html>

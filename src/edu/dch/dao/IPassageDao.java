@@ -11,4 +11,9 @@ public interface IPassageDao {
 	int allcount();
 	List<Passage> selectPassageByPage(int page);
 	List<Passage> selectPassageByPageandClassify(String classify,int page);
+	int CountAllpage(String name);
+
+	List<String> SelectByUserName(String name);
+
+	List<String> pageIssue(String username, int goPage);
 }

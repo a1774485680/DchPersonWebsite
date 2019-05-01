@@ -24,6 +24,8 @@ public class PassageLoadImp implements IPassageServices {
 	}
 	
 	public String PassageLoad(int page) {
+		session=MybatisSqlSessionutils.GetSqlSession();
+		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
 		page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
 		List<Passage> selectPassage = passdao.selectPassageByPage(page);//得到数据
 		session.commit();
@@ -41,6 +43,8 @@ public class PassageLoadImp implements IPassageServices {
 
 	
 	public int allCountPassage(String classify) {
+		session=MybatisSqlSessionutils.GetSqlSession();
+		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
 		// TODO Auto-generated method stub
 		String classify2 = this.getClassify(classify);//获得数据库中相应类别所对应的名称
 		System.out.println("classify2 :"+classify2);
@@ -65,6 +69,8 @@ public class PassageLoadImp implements IPassageServices {
 
 	@Override
 	public String classifyPassage(String classify, int page) {
+		session=MybatisSqlSessionutils.GetSqlSession();
+		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
 		String classify2 = this.getClassify(classify);//获得数据库中相应类别所对应的名称
 		String strJson;
 		if(classify2.equals("所有")){
@@ -91,6 +97,8 @@ public class PassageLoadImp implements IPassageServices {
 	}
 
 	public String getClassify(String classify){
+		session=MybatisSqlSessionutils.GetSqlSession();
+		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
 		String[] classifys={"所有","java","spring","springmvc","mybatis","springboot","mysql","redis"};
 		String[] Categorys=new String[8];
 		for(int i=0;i<8;i++){

@@ -1,9 +1,11 @@
 package edu.dch.bean;
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Component;
 
 @Component("Userlogin")
-public class Userlogin {
+public class Userlogin implements Serializable{
 	String username;
 	String userpassword;
 	public Userlogin(String username, String userpassword) {

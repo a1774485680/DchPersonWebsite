@@ -3,10 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.dch.dao.IUserLoginDao">
+
 	<insert id="insertUserlogin">
 		insert into userlogin(username,userpassword) values(#{username},#{userpassword})
 	</insert>
 	<select id="SelectUserName" resultType="edu.dch.bean.Userlogin">
 		select * from userlogin where username=#{username}
+	</select>
+	<select id="SelectIdByuserName" resultType="Int">
+		select uid from userlogin where username=#{0}
+	</select>
+	<select id="validataByUser" resultType="Int">
+		select count(*) from userlogin WHERE username=#{username} and userpassword=#{userpassword} 
 	</select>
 </mapper>

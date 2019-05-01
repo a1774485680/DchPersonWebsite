@@ -1,4 +1,4 @@
-$(function ($) {
+﻿$(function ($) {
 		//弹出登录
 		$("#Login").on('click', function () {
 			$("body").append("<div id='mask'></div>");

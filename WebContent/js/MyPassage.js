@@ -27,9 +27,13 @@
 					$("#"+i+"-span"+arrspan[2]).html("点赞"+Jsondata[fal].plike);
 					$("#"+i+"-span"+arrspan[3]).html("浏览量"+Jsondata[fal].pvisit); 
 					$("#"+i+"-span"+arrspan[4]).html("分类"+Jsondata[fal].pclassify); 
-					$("#"+i+"-h2").html(data[fal].ptitle);
-					$("#"+i+"-spa" +
-							"n"+arrspan[5]).html("简介"+Jsondata[fal].pbrief); 
+					$("#"+i+"-a").text(Jsondata[fal].ptitle);
+					$("#"+i+"-spa" +"n"+arrspan[5]).html("简介"+Jsondata[fal].pbrief); 
+					var authorName=Jsondata[fal].username;
+					 var title=Jsondata[fal].ptitle;
+					 var myherf='showPassage.html?authorName='+authorName+"&title="+title;
+					 $("#"+i+"-a").attr('href',myherf);
+					 $("#"+i+"-a").attr('target','_blank');
 					$("#"+i).show();
 					fal+=1;
 			    }else{
@@ -69,9 +73,9 @@
 				var j=this;
 				if(j=="span6"){
 					
-					$("<h2 />",{
-						id : i+"-h2",
-						class:"myh2",
+					$("<a />",{
+						id : i+"-a",
+						class:"mya",
 					}).appendTo($("#"+i));
 					$("<span />",{
 						id : i+"-span"+j,
@@ -106,7 +110,12 @@
 			 $("#"+i+"-span"+arrspan[2]).html("点赞"+data[fal].plike);
 			 $("#"+i+"-span"+arrspan[3]).html("浏览量"+data[fal].pvisit); 
 			 $("#"+i+"-span"+arrspan[4]).html("分类"+data[fal].pclassify);
-			 $("#"+i+"-h2").html(data[fal].ptitle);
+			 $("#"+i+"-a").text(data[fal].ptitle);
+			 var authorName=data[fal].username;
+			 var title=data[fal].ptitle;
+			 var myherf='showPassage.html?authorName='+authorName+"&title="+title;
+			 $("#"+i+"-a").attr('href',myherf);
+			 $("#"+i+"-a").attr('target','_blank');
 			 $("#"+i+"-span"+arrspan[5]).html("简介"+data[fal].pbrief);
 			 
 			 fal+=1;
@@ -116,6 +125,7 @@
 		//设置分页的系统 获得当前的行数
 		$.post("/MyFirstWeb/Passage/allPage.do",{NowCategory:Nowclassify},function(data){
 			allpage=data.count;
+			
 			$("#pageSpan").text(allpage);
 		},"json");
 		//设置跳转按钮

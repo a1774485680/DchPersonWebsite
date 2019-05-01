@@ -29,7 +29,7 @@ public class TestPassage {
 	}
 	@Test
 	public void testone() {
-		passdao.insertpassage(new Passage(3,"sa","c:/sa/sa/sa/sa","中国人1466565","2019/4/1","spring","这个简介很简短",12,12));
+		passdao.insertpassage(new Passage(3,"sa","c:/sa/sa/sa/sa","测试","2019/4/1","spring","这个简介很简短",12,12));
 	}
 	@Test
 	public void testone123() {
@@ -65,6 +65,7 @@ public class TestPassage {
 	public void test04() {
 		List<Passage> selectPassageByPageandClassify = passdao.selectPassageByPageandClassify("java", 2);
 		for(Passage a:selectPassageByPageandClassify){
+			
 			System.out.println(a.toString());
 		}
 	}

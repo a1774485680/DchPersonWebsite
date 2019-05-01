@@ -6,17 +6,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.dch.bean.Userlogin;
-import edu.dch.dao.IIssueDao;
+import edu.dch.dao.IPassageDao;
 import edu.dch.services.IssueServiceImp;
 import edu.dch.utils.MybatisSqlSessionutils;
 
 public class TestIssue {
-	public IIssueDao issueDao;
+	public IPassageDao issueDao;
 	private SqlSession session;
 	@Before
 	public void before() {
 		session=MybatisSqlSessionutils.GetSqlSession();
-		issueDao=session.getMapper(IIssueDao.class);
+		issueDao=session.getMapper(IPassageDao.class);
 	}
 	@After
 	public void after() {
@@ -24,7 +24,7 @@ public class TestIssue {
 	}
 	@Test
 	public void test01(){
-		int validataByUser = issueDao.CountAllpage("sa");
+		int validataByUser =issueDao.CountAllpage("sa");
 		System.out.println(validataByUser);
 	}
 	@Test

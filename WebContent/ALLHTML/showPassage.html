@@ -1,24 +1,22 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>文章</title>
-	<link rel="stylesheet" type="text/css" href="style-css/passage.css"/>
-	<script src="../js/vue2.6.10.js"></script>
-	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="../js/MyPassage.js"></script>
-	<!--导入登陆  -->
-	<link rel="stylesheet" type="text/css" href="style-css/loginDialog.css"/>
-	<link rel="stylesheet" type="text/css" href="style-css/Register.css"/>
-		<!-- 导入登陆的js -->
-	<script type="text/javascript" src="../js/Login.js"></script>
-	<script type="text/javascript" src="../js/Register.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style-css/loginDialog.css"/>
+<link rel="stylesheet" type="text/css" href="style-css/Register.css"/>
+<link rel="stylesheet" type="text/css" href="style-css/showPassage.css"/>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../js/Login.js"></script>
+<script type="text/javascript" src="../js/Register.js"></script>
+<script type="text/javascript" src="../js/showpassage.js"></script>
+<script type="text/javascript" src="../js/wangEditor.js"></script>
 </head>
 <body>
 	<div id="head">
 		<div id="head-ul">
 			<ul >
-				<li class="head-li"><a class="one" href="#home">首页</a></li>
+				<li class="head-li"><a class="one" href="passage.html">首页</a></li>
 				<li class="head-li"><a class="one" href="#news">博客文章</a></li>
 				<li class="head-li"><a id="IssuePassage" class="one" href="#contact">发布文章</a></li>
 				<li class="head-li"><a class="one" href="#about">下载资料</a></li>
@@ -53,15 +51,6 @@
 		<div id="manAndinfo">
 			
 			
-		</div>
-		<div id="paging">
-			<input type="text" value="1" size="8" id="Tpage">&nbsp;/&nbsp;
-			<span id="pageSpan">1</span>
-			
-			<input type="button" value="跳转" id="Bgo" />
-			<input type="button" value="上页" id="BupPage" />
-			<input type="button" value="下页" id="BdownPage" />
-			<a></a>
 		</div>
 	</div>
 	<!-- 登陆对话框 -->
