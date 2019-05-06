@@ -21,6 +21,7 @@ public class PassageLoadImp implements IPassageServices {
 	public PassageLoadImp(){
 		session=MybatisSqlSessionutils.GetSqlSession();
 		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
+		System.out.println("执行了构造方法");
 	}
 	
 	public String PassageLoad(int page) {
@@ -28,7 +29,7 @@ public class PassageLoadImp implements IPassageServices {
 		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
 		page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
 		List<Passage> selectPassage = passdao.selectPassageByPage(page);//得到数据
-		session.commit();
+		
 		//创建一个json对象
 		ObjectMapper mapper=new ObjectMapper();
 			String a="";//json返回的数组
@@ -38,21 +39,22 @@ public class PassageLoadImp implements IPassageServices {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		
 		return a;
 	}
 
 	
 	public int allCountPassage(String classify) {
-		session=MybatisSqlSessionutils.GetSqlSession();
-		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
+		
 		// TODO Auto-generated method stub
 		String classify2 = this.getClassify(classify);//获得数据库中相应类别所对应的名称
-		System.out.println("classify2 :"+classify2);
+		
 		int allCount;
 		int Allpage=0;
 		if(classify2.equals("所有")){
 			allCount=passdao.allcount();
-		}else{			
+		}else{	
+		
 			 allCount = passdao.allcountpassage(classify2);//调用dao层的方法获得文章的所有数量
 			// 定义页码数量
 			//定义 i,j临时变量算出到底页码数量为多少
@@ -69,8 +71,8 @@ public class PassageLoadImp implements IPassageServices {
 
 	@Override
 	public String classifyPassage(String classify, int page) {
-		session=MybatisSqlSessionutils.GetSqlSession();
-		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
+	
+		
 		String classify2 = this.getClassify(classify);//获得数据库中相应类别所对应的名称
 		String strJson;
 		if(classify2.equals("所有")){
@@ -78,9 +80,10 @@ public class PassageLoadImp implements IPassageServices {
 			
 		}else{
 			page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
+			
 			List<Passage> PassageByPageandClassify = passdao.selectPassageByPageandClassify(classify2, page);
 			session.commit();
-			System.out.println(page);
+			
 			
 			// TODO Auto-generated method stub
 			ObjectMapper mapper=new ObjectMapper();
@@ -97,8 +100,7 @@ public class PassageLoadImp implements IPassageServices {
 	}
 
 	public String getClassify(String classify){
-		session=MybatisSqlSessionutils.GetSqlSession();
-		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
+		
 		String[] classifys={"所有","java","spring","springmvc","mybatis","springboot","mysql","redis"};
 		String[] Categorys=new String[8];
 		for(int i=0;i<8;i++){

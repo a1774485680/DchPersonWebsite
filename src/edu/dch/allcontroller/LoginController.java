@@ -40,6 +40,7 @@ public class LoginController {
 		String password = res.getParameter("userpassword");
 		Userlogin user=new Userlogin(name,password);
 		int vail = loginService.VaildateByUserService(user);
+		System.out.println(vail);
 		Map<String,Object> map=new HashMap<String,Object>();
 		if(vail==1){
 			System.out.println("³É¹¦");
@@ -57,5 +58,9 @@ public class LoginController {
 		out.print(json);
 		out.close();
 		System.out.println(json);
+	}
+	@RequestMapping("/loginout.do")
+	public void loginout(HttpServletResponse response,HttpServletRequest res){
+		
 	}
 }

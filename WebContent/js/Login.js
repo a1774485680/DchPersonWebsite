@@ -78,7 +78,30 @@
 			
 			$.post("/MyFirstWeb/LoginController/login.do",{username:username,userpassword:userpassword},function(data){	
 				if(data.vail==1){
-					window.open("passage.html","_self");
+					//window.open("passage.html","_self");
+					//当登陆成功后
+					$("#Hlogin").hide();
+					$("#Register").html("注销");
+//					$("#Hregister").hide();
+//					$("#Hmessage").hide();
+//					$("#Hdynamic").hide();
+//					$("<li />",{
+//						id : "Hloginout",
+//						class:"head-li",
+//						click : function() {
+//							console.log("div");
+//						}
+//					}).appendTo($("#ul-right"));
+//					$("<a />",{
+//						id : "logout",
+//						class:"Alogout",
+//						click : function() {
+//							console.log("loginout");
+//						}
+//					}).appendTo($("#Hloginout"));
+//					$("#logout").html("注销");
+					$("#LoginBox").fadeOut("fast");
+					$("#mask").css({ display: 'none' });
 				}else{
 					alert("账号密码错误");
 				}

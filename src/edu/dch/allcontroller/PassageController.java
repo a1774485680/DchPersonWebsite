@@ -40,16 +40,15 @@ public class PassageController {
 	public void allPage(HttpServletResponse response,HttpServletRequest res) throws IOException{
 		//调用方法获得json格式的数据（从数据库来）
 		String NowCategory = res.getParameter("NowCategory");
+		System.out.println("NowCategory         by allPage.do    "+NowCategory);
 		int allCount = passageService.allCountPassage(NowCategory );
 		//设置字符编码
-		System.out.println(NowCategory);
+		
 		HashMap<String,Object> map = new HashMap<String,Object>();//定义map
 		map.put("count", allCount);
 		response.setCharacterEncoding("utf-8");
-		System.out.println("cs  "+allCount);
 		JSONObject myJsom=JSONObject.fromObject(map);
 		String jsonString=myJsom.toString();
-		System.out.println(jsonString);
 		PrintWriter out =response.getWriter();
 		out.print(jsonString);
 		out.close();
@@ -64,6 +63,7 @@ public class PassageController {
 		System.out.println("cs"+goPageJson);
 		PrintWriter out =response.getWriter();
 		out.print(goPageJson);
+		System.out.println(goPageJson);
 		out.close();
 	}@RequestMapping("/downPage.do")
 	public void downPage(HttpServletResponse response,HttpServletRequest res) throws IOException{
@@ -95,10 +95,9 @@ public class PassageController {
 	public void classify(HttpServletResponse response,HttpServletRequest res) throws IOException{
 		
 		String NowCategory = res.getParameter("NowCategory");
-		
+		System.out.println("NowCategory        by classify.do    "+NowCategory);
 		String upPageJson = passageService.classifyPassage(NowCategory, 1);
-		response.setCharacterEncoding("utf-8");
-		System.out.println("cs"+upPageJson);
+		response.setCharacterEncoding("utf-8");		
 		PrintWriter out =response.getWriter();
 		out.print(upPageJson);
 		out.close();

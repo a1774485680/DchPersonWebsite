@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import edu.dch.bean.Userlogin;
 import edu.dch.dao.IUserLoginDao;
+import edu.dch.services.LoginServiceImp;
 import edu.dch.utils.MybatisSqlSessionutils;
 import edu.dch.utils.PassageReageUtil;
 
@@ -50,13 +51,10 @@ public class Testone {
 		System.out.println(df11.format(new Date()));
 	}
 	@Test 
-	public void testxx1() throws IOException{
-		PassageReageUtil as=new PassageReageUtil();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		System.out.println(df.format(new Date()));
-		as.txtPassageToRead2("sa@图片5");
-		SimpleDateFormat df11 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		System.out.println(df11.format(new Date()));
+	public void test01() throws IOException{
+		LoginServiceImp a=new LoginServiceImp();
+		int vaildateByUserService = a.VaildateByUserService(new Userlogin("110", "123456a"));
+		System.out.println(vaildateByUserService);
 	}
 	
 }

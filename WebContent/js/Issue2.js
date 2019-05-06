@@ -131,6 +131,7 @@ $(function (){
 			$.post("/MyFirstWeb/Issue/publish.do",{Ptitle:Ptitle,pbrief:pbrief,Pclassify:Pclassify,textHtml:textHtml},function(data){	
 				if(data=="1"){
 					alert("发布成功");
+					window.open("Issue.html","_self");
 				}
 			},"text");
 		}else{

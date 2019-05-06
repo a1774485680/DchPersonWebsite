@@ -67,9 +67,16 @@ $(function (){
 		 } 
 	 });
 		 $("#Register").on('click', function () {
-				$("body").append("<div id='mask1'></div>");
-				$("#mask1").addClass("mask1").fadeIn("slow");
-				$("#RegisterDiv").fadeIn("slow");
+			 if($("#Register").html()=="注册"){
+				 
+				 $("body").append("<div id='mask1'></div>");
+				 $("#mask1").addClass("mask1").fadeIn("slow");
+				 $("#RegisterDiv").fadeIn("slow");
+			 }else{
+				 //执行注销的方法
+				 $("#Hlogin").show();
+				 $("#Register").html("注册");
+			 }
 				
 		});
 		$(".close_btn1").hover(function () { $(this).css({ color: 'black' }) }, function () { $(this).css({ color: '#999' }) }).on('click', function () {

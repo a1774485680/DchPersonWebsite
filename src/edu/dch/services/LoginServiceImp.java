@@ -15,13 +15,16 @@ public class LoginServiceImp implements ILoginService {
 	public LoginServiceImp() {
 		super();
 		session=MybatisSqlSessionutils.GetSqlSession();
+		
 		loginDao=session.getMapper(IUserLoginDao.class);
 	}
 
 	@Override
 	public int VaildateByUserService(Userlogin user) {
 		int validataByUser = loginDao.validataByUser(user);
+		System.out.println("ох  "+validataByUser);
 		session.commit();
+		System.out.println("╨С  "+validataByUser);
 		return validataByUser;
 		// TODO Auto-generated method stub
 		

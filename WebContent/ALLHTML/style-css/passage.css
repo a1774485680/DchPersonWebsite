@@ -164,7 +164,7 @@
 	{
 		width:100px;
 		font-weight:bold;
-		font-size:100%;
+		font-size:80%;
 		color:#FFFFFF;
 		background-color:#bebebe;
 		text-align:center;
@@ -173,4 +173,8 @@
 	}
 	#div-layout{
 		min-width: 1400px;
+	}
+	.Alogout{
+		background-color:#bebebe;
+		cursor:pointer;
 	}
