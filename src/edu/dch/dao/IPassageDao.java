@@ -16,4 +16,7 @@ public interface IPassageDao {
 	List<String> SelectByUserName(String name);
 
 	List<String> pageIssue(String username, int goPage);
+	List<Passage> selectByAuthorAndName(String name, String title);
+	void updateByAuthorAndNameForVisit(String name, String title);
+	void updatepassage(Passage passage);
 }

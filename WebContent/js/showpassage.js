@@ -14,7 +14,19 @@ function GetRequest() {
  };
 $(function (){
 	GetRequest();
-	
+	$("#IssuePassage").on('click', function () {
+		
+		window.open("Issue.html","_self");
+	});
+	//检查登陆
+	$.post("/MyFirstWeb/LoginController/checklogin.do",function(data){
+		if(data[0].userpassword!="未登陆"){
+			var txtName = $("#txtName").val(data[0].username);
+			var txtPwd = $("#txtPwd").val(data[0].userpassword);
+			$("#Hlogin").hide();
+			$("#Register").html("注销");
+		}
+	},"json");
 	var E = window.wangEditor;
 	var editor = new E('#manAndinfo');
 	
@@ -26,4 +38,14 @@ $(function (){
 		
 		
 	},"text");
+	$.post("/MyFirstWeb/ShowPassage/passageinform.do",{name:theRequest.authorName,title:theRequest.title},function(data){
+		
+		//editor.txt.html(data);
+		$("#h2_title").html(data[0].ptitle);
+		$("#span_data").html("时间 "+data[0].pdate+"&nbsp;&nbsp;&nbsp");
+		$("#span_visit").html("浏览量 "+data[0].pvisit+"&nbsp;&nbsp;&nbsp");
+		$("#span_author").html("作者 "+data[0].username+"&nbsp;&nbsp;&nbsp");
+		//$("#h2-title").html(data[0].ptitle);
+		
+	},"json");
 });

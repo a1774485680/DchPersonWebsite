@@ -17,6 +17,13 @@ public class Passage implements Serializable{
 	public int	plike;
 	public int	pvisit;
 	private String username;
+	//private String publish;
+//	public String getPublish() {
+//		return publish;
+//	}
+//	public void setPublish(String publish) {
+//		this.publish = publish;
+//	}
 	public String getUsername() {
 		return username;
 	}
@@ -27,6 +34,20 @@ public class Passage implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+//	public Passage(int uid, String iid, String path, String ptitle, String pdate, String pclassify,String pbrief, int plike,
+//			int pvisit,String publish) {
+//		super();
+//		this.pbrief=pbrief;
+//		this.uid = uid;
+//		Iid = iid;
+//		this.path = path;
+//		this.ptitle = ptitle;
+//		this.pdate = pdate;
+//		this.pclassify = pclassify;
+//		this.plike = plike;
+//		this.pvisit = pvisit;
+//		this.publish=publish;
+//	}
 	public Passage(int uid, String iid, String path, String ptitle, String pdate, String pclassify,String pbrief, int plike,
 			int pvisit) {
 		super();

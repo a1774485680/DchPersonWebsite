@@ -74,6 +74,10 @@ $(function (){
 				 $("#RegisterDiv").fadeIn("slow");
 			 }else{
 				 //执行注销的方法
+				 $.post("/MyFirstWeb/LoginController/loginout.do",function(data){
+						console.log(data);
+						
+					},"text");
 				 $("#Hlogin").show();
 				 $("#Register").html("注册");
 			 }

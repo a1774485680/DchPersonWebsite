@@ -16,4 +16,7 @@
 	<select id="validataByUser" resultType="Int">
 		select count(*) from userlogin WHERE username=#{username} and userpassword=#{userpassword} 
 	</select>
+	<update id="updateByAuthorAndNameForVisit">
+		
+	</update>
 </mapper>

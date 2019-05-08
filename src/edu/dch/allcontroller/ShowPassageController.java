@@ -33,4 +33,16 @@ public class ShowPassageController {
 		out.print(passTxt);
 		out.close();
 	}
+	@RequestMapping("/passageinform.do")
+	public void passageinform(HttpServletResponse response,HttpServletRequest res) throws IOException{
+		String name = res.getParameter("name");
+		String title = res.getParameter("title");
+		String passInform=IShowService.SelectByNameAndTitleOfpassageinfrom(name, title);
+		response.setCharacterEncoding("utf-8");
+		
+		PrintWriter out =response.getWriter();
+		System.out.println(passInform);
+		out.print(passInform);
+		out.close();
+	}
 }

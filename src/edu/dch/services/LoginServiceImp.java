@@ -21,6 +21,9 @@ public class LoginServiceImp implements ILoginService {
 
 	@Override
 	public int VaildateByUserService(Userlogin user) {
+		session=MybatisSqlSessionutils.GetSqlSession();
+		
+		loginDao=session.getMapper(IUserLoginDao.class);
 		int validataByUser = loginDao.validataByUser(user);
 		System.out.println("ох  "+validataByUser);
 		session.commit();

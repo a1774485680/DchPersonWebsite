@@ -7,5 +7,7 @@ public interface IIssueServices {
 	String PassageLoad(String username);
 
 	String goPageByIssue(String string, int goPage);
-	void writePassage(String username,String Ptitle,String Pclassify,String passageStr,String pbrief);
+	String writePassage(String username,String Ptitle,String Pclassify,String passageStr,String pbrief);
+
+	String updatewritePassage(String username, String ptitle, String pclassify, String passageStr, String pbrief);
 }

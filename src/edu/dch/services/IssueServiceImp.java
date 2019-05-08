@@ -109,24 +109,71 @@ public class IssueServiceImp implements IIssueServices {
 	}
 	//writePassage方法的作用是讲文章保存为txt格式 并将文章信息存入数据库 例如文章保存的路径等
 	@Override
-	public void writePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
-		//定义文章路径
-		String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
-		//将文章类容写到响应的文章路径中
-		try {
-			passWrite.writeTotxt(passageStr, passageName);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//获取当前日期
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
-		String nowdata=df.format(new Date());
-		int userId = LoginDao.SelectIdByuserName(username);//获得用户id
-		session.commit();
-		passagedao.insertpassage(new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0));
+	public String writePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
+		List<Passage> passage1 = passagedao.selectByAuthorAndName(username, Ptitle);
 		session1.commit();
+		String fal="";
+		if(passage1.toString().equals("[]")){
+			System.out.println("執行了這個方法");
+			//定义文章路径
+			String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
+			//将文章类容写到响应的文章路径中
+			try {
+				passWrite.writeTotxt(passageStr, passageName);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//获取当前日期
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+			String nowdata=df.format(new Date());
+			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
+			session.commit();
+			passagedao.insertpassage(new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0));
+			session1.commit();
+			fal="true";
+		}else{
+			fal="false";
+			System.out.println("錯誤的執行了這個方法");
+		}
+		return fal;
+	}
+
+	@Override
+	public String updatewritePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
+		session=MybatisSqlSessionutils.GetSqlSession();
+		LoginDao=(IUserLoginDao) session.getMapper(IUserLoginDao.class);
+		session1=MybatisSqlSessionutils.GetSqlSession();
+		passagedao=(IPassageDao) session1.getMapper(IPassageDao.class);
+		List<Passage> passage1 = passagedao.selectByAuthorAndName(username, Ptitle);
+		String fal="";
+		if(passage1.toString().equals("[]")){	
+			fal="true";
+		}else{
+			//定义文章路径
+			String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
+			//将文章类容写到响应的文章路径中
+			try {
+				System.out.println("passageStr="+passageStr);
+				passWrite.writeTotxt(passageStr, passageName);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//获取当前日期
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			System.out.println("当前日期："+df.format(new Date()));// new Date()为获取当前系统时间
+			String nowdata=df.format(new Date());
+			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
+			session.commit();
+			Passage pass=new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0);
+			System.out.println(pass);
+			passagedao.updatepassage(pass);//;
+			session1.commit();
+			fal="true";
+		}
+		return fal;
 	}
 
 }

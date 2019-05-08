@@ -1,24 +1,34 @@
-ï»¿
-	var Nowclassify ="classify-1";//ç°åœ¨çš„åˆ†ç±»ä¸º classify-1ã€‚ classify-1ä»£è¡¨æ‰€æœ‰è¿™ä¸ªåˆ†ç±»
+
+	var Nowclassify ="classify-1";//ÏÖÔÚµÄ·ÖÀàÎª classify-1¡£ classify-1´ú±íËùÓĞÕâ¸ö·ÖÀà
 	
-	var Npage=1;//è·å¾—å½“å‰çš„é¡µç 
-	var allpage;//è·å¾—æ‰€æœ‰é¡µç 
+	var Npage=1;//»ñµÃµ±Ç°µÄÒ³Âë
+	var allpage;//»ñµÃËùÓĞÒ³Âë
 	falof1=0;
-	falof2=0;//ç±»åˆ«æŸ¥è¯¢çš„æ—¶å€™ï¼Œå¿…é¡»ä¸€ä¸ªç±»åˆ«æŸ¥è¯¢å®Œæ¯•æ‰èƒ½æŸ¥è¯¢ä¸‹ä¸€ä¸ªç±»åˆ«ï¼Œå‡å°å¯¹æ•°æ®åº“çš„å‹åŠ›;å¦‚æœä¸è®¾ç½®çš„è¯ï¼Œ
-	         //å½“ç”¨æˆ·å¿«é€Ÿå¤šæ¬¡ç‚¹å‡»ç±»åˆ«ä¸”æ¢çš„è¯ï¼Œæ•°æ®åº“å‹åŠ›å°±ä¼šè¿‡å¤§å‡ºç°é—®é¢˜
-	//è¯¥æ–¹æ³•ä¸ºæ•°æ®åŠ è½½çš„é€šç”¨æ–¹æ³•ï¼Œç±»åˆ«å’Œåˆ†é¡µéƒ½å¯ä»¥ç”¨				
+	falof2=0;//Àà±ğ²éÑ¯µÄÊ±ºò£¬±ØĞëÒ»¸öÀà±ğ²éÑ¯Íê±Ï²ÅÄÜ²éÑ¯ÏÂÒ»¸öÀà±ğ£¬¼õĞ¡¶ÔÊı¾İ¿âµÄÑ¹Á¦;Èç¹û²»ÉèÖÃµÄ»°£¬
+	         //µ±ÓÃ»§¿ìËÙ¶à´Îµã»÷Àà±ğÇÒ»»µÄ»°£¬Êı¾İ¿âÑ¹Á¦¾Í»á¹ı´ó³öÏÖÎÊÌâ
+	//¼ì²éµÇÂ½
+	$.post("/MyFirstWeb/LoginController/checklogin.do",function(data){
+		if(data[0].userpassword!="Î´µÇÂ½"){
+			var txtName = $("#txtName").val(data[0].username);
+			var txtPwd = $("#txtPwd").val(data[0].userpassword);
+			$("#Hlogin").hide();
+			$("#Register").html("×¢Ïú");
+		}
+	},"json");
+	//¸Ã·½·¨ÎªÊı¾İ¼ÓÔØµÄÍ¨ÓÃ·½·¨£¬Àà±ğºÍ·ÖÒ³¶¼¿ÉÒÔÓÃ	
+	
 	function page(data){
 		var arr = [ "div1", "div2", "div3", "div4","div5","div6","div7","div8","div9","div10"];
 		var arrspan=["span1","span2","span3","span4","span5","span6"];
 		var css=data;
 		
-		var Jsondata=eval(data);//è®²å­—ç¬¦ä¸²è½¬æ¢æˆjson
-		//å°†jsonå¯¹è±¡è½¬æ¢æˆæ•°ç»„
+		var Jsondata=eval(data);//½²×Ö·û´®×ª»»³Éjson
+		//½«json¶ÔÏó×ª»»³ÉÊı×é
 		var jsonArr = [];
 	     for(var i =0 ;i < Jsondata.length;i++){
 	            jsonArr[i] = Jsondata[i];
 	     }
-		var line=jsonArr.length;//è·å¾—æ•°ç»„çš„é•¿åº¦
+		var line=jsonArr.length;//»ñµÃÊı×éµÄ³¤¶È
 		
 		var fal=0;
 		
@@ -26,13 +36,13 @@
 			    var i=this;
 			    if(fal<line){
 			    	
-					$("#"+i+"-span"+arrspan[0]).html("ä½œè€…  "+Jsondata[fal].username);
-					$("#"+i+"-span"+arrspan[1]).html("æ—¥æœŸ ï¼š"+Jsondata[fal].pdate);
-					$("#"+i+"-span"+arrspan[2]).html("ç‚¹èµ"+Jsondata[fal].plike);
-					$("#"+i+"-span"+arrspan[3]).html("æµè§ˆé‡"+Jsondata[fal].pvisit); 
-					$("#"+i+"-span"+arrspan[4]).html("åˆ†ç±»"+Jsondata[fal].pclassify); 
+					$("#"+i+"-span"+arrspan[0]).html("×÷Õß  "+Jsondata[fal].username);
+					$("#"+i+"-span"+arrspan[1]).html("ÈÕÆÚ £º"+Jsondata[fal].pdate);
+					//$("#"+i+"-span"+arrspan[2]).html("µãÔŞ"+Jsondata[fal].plike);
+					$("#"+i+"-span"+arrspan[3]).html("ä¯ÀÀÁ¿"+Jsondata[fal].pvisit); 
+					$("#"+i+"-span"+arrspan[4]).html("·ÖÀà"+Jsondata[fal].pclassify); 
 					$("#"+i+"-a").text(Jsondata[fal].ptitle);
-					$("#"+i+"-spa" +"n"+arrspan[5]).html("ç®€ä»‹"+Jsondata[fal].pbrief); 
+					$("#"+i+"-spa" +"n"+arrspan[5]).html("¼ò½é"+Jsondata[fal].pbrief); 
 					var authorName=Jsondata[fal].username;
 					 var title=Jsondata[fal].ptitle;
 					 var myherf='showPassage.html?authorName='+authorName+"&title="+title;
@@ -47,16 +57,16 @@
 		});
 	};
 	
-	//ç¬¬ä¸€åŠ è½½é¡µé¢çš„æ—¶å€™åˆå§‹åŒ–ï¼Œ
+	//µÚÒ»¼ÓÔØÒ³ÃæµÄÊ±ºò³õÊ¼»¯£¬
 	$(function (){
-		//æ³¨å†Œå‘å¸ƒæ–‡ç« ç‚¹å‡»äº‹ä»¶
+		//×¢²á·¢²¼ÎÄÕÂµã»÷ÊÂ¼ş
 		$("#IssuePassage").on('click', function () {
 			
 			window.open("Issue.html","_self");
 		});
-		$("#"+Nowclassify).css("background-color","#cc0000");//è®¾ç½®ç¬¬ä¸€æ¬¡åŠ è½½é¡µé¢çš„æ—¶å€™ Nowclassifyåˆ†ç±»çš„é¢œè‰²
+		$("#"+Nowclassify).css("background-color","#cc0000");//ÉèÖÃµÚÒ»´Î¼ÓÔØÒ³ÃæµÄÊ±ºò Nowclassify·ÖÀàµÄÑÕÉ«
 		$.post("/MyFirstWeb/Passage/passageLoad.do",function(data){
-			var fal=0;//è®°å½•æ˜¯ç¬¬å‡ ä¸ªdiv
+			var fal=0;//¼ÇÂ¼ÊÇµÚ¼¸¸ödiv
 			
 		 var arr = [ "div1", "div2", "div3", "div4","div5","div6","div7","div8","div9","div10"];
 		 var arrspan=["span1","span2","span3","span4","span5","span6"];
@@ -109,30 +119,30 @@
 		 $.each(arr,function(){
 			 var i=this; 
 			 //alert("#"+i+"-span"+arrspan[0]);
-			 $("#"+i+"-span"+arrspan[0]).html("ä½œè€…  "+data[fal].username);
-			 $("#"+i+"-span"+arrspan[1]).html("æ—¥æœŸ ï¼š"+data[fal].pdate);
-			 $("#"+i+"-span"+arrspan[2]).html("ç‚¹èµ"+data[fal].plike);
-			 $("#"+i+"-span"+arrspan[3]).html("æµè§ˆé‡"+data[fal].pvisit); 
-			 $("#"+i+"-span"+arrspan[4]).html("åˆ†ç±»"+data[fal].pclassify);
+			 $("#"+i+"-span"+arrspan[0]).html("×÷Õß  "+data[fal].username);
+			 $("#"+i+"-span"+arrspan[1]).html("ÈÕÆÚ £º"+data[fal].pdate);
+			 //$("#"+i+"-span"+arrspan[2]).html("µãÔŞ"+data[fal].plike);
+			 $("#"+i+"-span"+arrspan[3]).html("ä¯ÀÀÁ¿"+data[fal].pvisit); 
+			 $("#"+i+"-span"+arrspan[4]).html("·ÖÀà"+data[fal].pclassify);
 			 $("#"+i+"-a").text(data[fal].ptitle);
 			 var authorName=data[fal].username;
 			 var title=data[fal].ptitle;
 			 var myherf='showPassage.html?authorName='+authorName+"&title="+title;
 			 $("#"+i+"-a").attr('href',myherf);
 			 $("#"+i+"-a").attr('target','_blank');
-			 $("#"+i+"-span"+arrspan[5]).html("ç®€ä»‹"+data[fal].pbrief);
+			 $("#"+i+"-span"+arrspan[5]).html("¼ò½é"+data[fal].pbrief);
 			 
 			 fal+=1;
 		 });
 		 
 		},"json");
-		//è®¾ç½®åˆ†é¡µçš„ç³»ç»Ÿ è·å¾—å½“å‰çš„è¡Œæ•°
+		//ÉèÖÃ·ÖÒ³µÄÏµÍ³ »ñµÃµ±Ç°µÄĞĞÊı
 		$.post("/MyFirstWeb/Passage/allPage.do",{NowCategory:Nowclassify},function(data){
 			allpage=data.count;
 			
 			$("#pageSpan").text(allpage);
 		},"json");
-		//è®¾ç½®è·³è½¬æŒ‰é’®
+		//ÉèÖÃÌø×ª°´Å¥
 		$("#Bgo").click(function(){
 			Npage=$("#Tpage").val();
 			if(Npage>0&&Npage<=allpage){
@@ -144,7 +154,7 @@
 				$("#Tpage").val("1");
 			}
 		});	
-		//è®¾ç½®ä¸Šä¸€é¡µæŒ‰é’®
+		//ÉèÖÃÉÏÒ»Ò³°´Å¥
 		$("#BupPage").click(function(){
 			Npage=$("#Tpage").val();
 			var up=parseInt(Npage)-1;
@@ -155,7 +165,7 @@
 				$("#Tpage").val(up);
 			}
 		});
-		//è®¾ç½®ä¸‹ä¸€é¡µæŒ‰é’®
+		//ÉèÖÃÏÂÒ»Ò³°´Å¥
 		$("#BdownPage").click(function(){
 			Npage=$("#Tpage").val();
 			var down=parseInt(Npage)+1;
@@ -168,7 +178,7 @@
 			} 
 		});	
 	}); 
-	//ç±»åˆ«çš„äº‹ä»¶ç‚¹å‡»å¤„ç†æ–¹æ³•
+	//Àà±ğµÄÊÂ¼şµã»÷´¦Àí·½·¨
 	function classify(id)
 		{		
 					
@@ -178,8 +188,8 @@
 					$("#"+i).css("pointer-events","none" );
 					
 				});
-				falof1=1;//å°†è·å¾—æ€»é¡µæ•°çš„æ ‡å¿—ä½è®¾ç½®ä½1ï¼Œå³ä¸å…è®¸ç‚¹å‡»ç±»åˆ«
-				falof2=1;//å°†è·å¾—ç±»åˆ«æ–‡ç« ä¿¡æ¯çš„æ ‡å¿—ä½è®¾ç½®ä½1ï¼Œå³ä¸å…è®¸ç‚¹å‡»ç±»åˆ«
+				falof1=1;//½«»ñµÃ×ÜÒ³ÊıµÄ±êÖ¾Î»ÉèÖÃÎ»1£¬¼´²»ÔÊĞíµã»÷Àà±ğ
+				falof2=1;//½«»ñµÃÀà±ğÎÄÕÂĞÅÏ¢µÄ±êÖ¾Î»ÉèÖÃÎ»1£¬¼´²»ÔÊĞíµã»÷Àà±ğ
 		 		$("#"+Nowclassify).css("background-color","#bebebe");
 		 		$("#"+id).css("background-color","#cc0000");
 		 		Nowclassify=id;

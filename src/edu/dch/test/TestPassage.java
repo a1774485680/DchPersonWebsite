@@ -112,4 +112,8 @@ public class TestPassage {
 			System.out.println(i);
 		}
 	}
+	@Test
+	public void test09() {
+		passdao.updatepassage(new Passage(6,"sa","c:/sa/sa/sa/sa","¹ş¹ş¹ş£¬²âÊÔ","2019/4/1","spring","Õâ¸ö¼ò½éºÜ¼ò¶Ì",12,12));
+	}
 }

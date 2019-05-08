@@ -31,4 +31,18 @@
 	<select id="pageIssue" resultType="String">
 		SELECT ptitle FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} limit #{1},10
 	</select>
+	<select id="selectByAuthorAndName" resultType="edu.dch.bean.Passage">
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin 
+		WHERE userlogin.uid=passage.uid 
+         and userlogin.username=#{0} and passage.ptitle=#{1}
+	</select>
+	<update id="updateByAuthorAndNameForVisit" >
+		UPDATE passage SET pvisit = pvisit+1 WHERE pid in (
+		SELECT t.pid FROM (SELECT pid from passage ,userlogin WHERE userlogin.uid=passage.uid and 
+ 		userlogin.username=#{0} and passage.ptitle=#{1}
+ 		)t)
+	</update>
+	<update id="updatepassage">
+		UPDATE passage set pdate=#{pdate} ,pbrief=#{pbrief}, pclassify=#{pclassify} where uid=#{uid} and ptitle=#{ptitle}
+	</update>
 </mapper>

@@ -27,9 +27,10 @@ public class PassageLoadImp implements IPassageServices {
 	public String PassageLoad(int page) {
 		session=MybatisSqlSessionutils.GetSqlSession();
 		passdao=session.getMapper(IPassageDao.class);//dao层的初始化
+		
 		page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
 		List<Passage> selectPassage = passdao.selectPassageByPage(page);//得到数据
-		
+		session.commit();
 		//创建一个json对象
 		ObjectMapper mapper=new ObjectMapper();
 			String a="";//json返回的数组
@@ -59,6 +60,7 @@ public class PassageLoadImp implements IPassageServices {
 			// 定义页码数量
 			//定义 i,j临时变量算出到底页码数量为多少
 		}
+		session.commit();
 		int i=allCount/10;
 		int j=allCount%10;
 		if(j!=0){

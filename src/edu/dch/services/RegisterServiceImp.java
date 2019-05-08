@@ -18,7 +18,7 @@ public class RegisterServiceImp implements IRegisterService {
 	public boolean usernameVerify(String name) {
 		// TODO Auto-generated method stub
 		Userlogin selectUserName = userLoginDao.SelectUserName(name);
-	
+		session.commit();
 		if(selectUserName==null){
 			return false;
 		}
