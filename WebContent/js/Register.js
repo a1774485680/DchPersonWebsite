@@ -23,6 +23,28 @@ $(function (){
 			 } 
 		 },"json");
 	 });
+	 $("#identily").blur(function(){			
+		 var identily=$(this).val();//获得当前元素的值
+		$.post("/MyFirstWeb/Register/identilyVerify.do",{identily:identily},function(data){
+			
+			 var span=$("#s_identily");
+			 if(data.userExsit){	 
+				 span.css("color","red");
+				 span.html(data.msg);
+				 fal=false;
+			 }else{
+				 if(identily==""){
+					 span.css("color","red");
+					 span.html("验证码不能为空");
+				 }
+				 else{
+				 span.css("color","green");
+				 span.html("");
+				 fal=true;
+				 }
+			 } 
+		 },"json");
+	 });
 	 $("#userpassword").blur(function(){
 		 var text=$(this).val();
 		 var regular=/^(?![0-9]*$)[a-zA-Z0-9]{6,16}$/;
@@ -56,9 +78,10 @@ $(function (){
 	 $("#sub").click(function(){
 		 var s_named=$("#s_username");
 		 var s_password=$("#s_password");
-		 var s_repassword=$("#s_repassword");			
+		 var s_repassword=$("#s_repassword");
+		 var s_identily=$("#s_identily");
 		 var span= $("#s_sub");
-		 if(fal && s_password.text()=="" && s_repassword.text()=="" && $("#userpassword").val()!=""){
+		 if(fal && s_password.text()=="" &&s_identily.text()=="" && s_repassword.text()=="" && $("#userpassword").val()!=""){
 			 $("#f_sub").submit();
 		 }else{ 
 			

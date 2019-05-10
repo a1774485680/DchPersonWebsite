@@ -47,6 +47,27 @@ public class RegisterController {
 		out.print(jsonString);
 		out.close();
 	}
+	@RequestMapping("/identilyVerify.do")
+	public void identilyVerify(String identily,HttpServletResponse response ) throws IOException{
+		
+		String myidentily=identily;
+		System.out.println(myidentily);
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		if(registetServices.identilyVerify(myidentily)){
+			map.put("userExsit", false);
+			map.put("msg", "");
+		}else{			
+			map.put("userExsit", true);
+			map.put("msg", "ÑéÖ¤Âë´íÎó");
+		}
+		JSONObject myJsom=JSONObject.fromObject(map);
+		String jsonString=myJsom.toString();
+		System.out.println(jsonString);
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out =response.getWriter();
+		out.print(jsonString);
+		out.close();
+	}
 	@RequestMapping("/UsernameRegister.do")
 	public ModelAndView userRegister(String name,String password){
 		System.out.println(name+"  "+password);

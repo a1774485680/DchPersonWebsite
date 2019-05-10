@@ -5,36 +5,36 @@
 <mapper namespace="edu.dch.dao.IPassageDao">
 
 	<insert id="insertpassage">
-		insert into passage(uid,Iid,path,ptitle,pdate,plike,pbrief,pvisit,pclassify) values(#{uid},#{Iid},#{path},#{ptitle},#{pdate},#{plike},#{pbrief},#{pvisit},#{pclassify})
+		insert into passage(uid,Iid,path,ptitle,pdate,plike,pbrief,pvisit,pclassify,publish) values(#{uid},#{Iid},#{path},#{ptitle},#{pdate},#{plike},#{pbrief},#{pvisit},#{pclassify},#{publish})
 	</insert>
 	<select id="SelectPassage" resultType="edu.dch.bean.Passage">
-		select * from passage 
+		select * from passage where publish=true
 	</select>
 	<select id="allcountpassage" resultType="Int">
-		select count(*) from passage where pclassify=#{0}
+		select count(*) from passage where pclassify=#{0} and publish=true
 	</select>
 	<select id="allcount" resultType="Int">
-		select count(*) from passage 
+		select count(*) from passage where publish=true
 	</select>
 	<select id="selectPassageByPage" resultType="edu.dch.bean.Passage">
-		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid limit #{0} ,10
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid and publish=true limit #{0} ,10
 	</select>
 	<select id="selectPassageByPageandClassify" resultType="edu.dch.bean.Passage">
-		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid and pclassify=#{0} limit #{1} ,10
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid and pclassify=#{0} and publish=true limit #{1} ,10
 	</select>
 	<select id="CountAllpage" resultType="Int">
 		SELECT count(*)  from passage ,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} 
 	</select>
-	<select id="SelectByUserName" resultType="String">
-		SELECT ptitle FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} limit 0,10
+	<select id="SelectByUserName" resultType="edu.dch.bean.Passage">
+		SELECT ptitle,publish FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0}  limit 0,10
 	</select>
-	<select id="pageIssue" resultType="String">
-		SELECT ptitle FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} limit #{1},10
+	<select id="pageIssue" resultType="edu.dch.bean.Passage">
+		SELECT ptitle,publish FROM passage,userlogin WHERE userlogin.uid=passage.uid and userlogin.username=#{0} limit #{1},10
 	</select>
 	<select id="selectByAuthorAndName" resultType="edu.dch.bean.Passage">
 		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin 
 		WHERE userlogin.uid=passage.uid 
-         and userlogin.username=#{0} and passage.ptitle=#{1}
+         and userlogin.username=#{0} and passage.ptitle=#{1} 
 	</select>
 	<update id="updateByAuthorAndNameForVisit" >
 		UPDATE passage SET pvisit = pvisit+1 WHERE pid in (
@@ -45,4 +45,24 @@
 	<update id="updatepassage">
 		UPDATE passage set pdate=#{pdate} ,pbrief=#{pbrief}, pclassify=#{pclassify} where uid=#{uid} and ptitle=#{ptitle}
 	</update>
+	<update id="changeStatus" >
+		UPDATE passage SET publish=true where uid=(
+		SELECT uid FROM userlogin where username=#{0}
+		) and ptitle=#{1}
+	</update>
+	<select id="selectPassageByPageByPublish" resultType="edu.dch.bean.Passage">
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid and publish=false limit #{0} ,10
+	</select>
+	
+	<select id="allcountpassageByPublish" resultType="Int">
+		select count(*) from passage where pclassify=#{0} and publish=false
+	</select>
+	
+	<select id="selectPassageByPageandClassifyByPublish" resultType="edu.dch.bean.Passage">
+		select username,pid,path,ptitle,pdate,plike,pvisit,pbrief,pclassify from passage ,userlogin WHERE userlogin.uid=passage.uid and pclassify=#{0} and publish=false limit #{1} ,10
+	</select>
+	
+	<select id="allcountByPublish" resultType="Int">
+		select count(*) from passage where publish=false
+	</select>
 </mapper>

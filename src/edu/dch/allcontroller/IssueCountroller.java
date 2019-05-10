@@ -58,7 +58,7 @@ public class IssueCountroller {
 		String StringJson=IssueService.PassageLoad(user.getUsername());
 		//ÉèÖÃ×Ö·û±àÂë
 		response.setCharacterEncoding("utf-8");
-		
+		System.out.println(StringJson);
 		PrintWriter out =response.getWriter();
 		out.print(StringJson);
 		out.close();

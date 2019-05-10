@@ -2,16 +2,15 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>文章</title>
-	<link rel="stylesheet" type="text/css" href="style-css/passage.css"/>
+	<title>管理员</title>
+	<link rel="stylesheet" type="text/css" href="style-css/Admin.css"/>
 	<script src="../js/vue2.6.10.js"></script>
 	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="../js/MyPassage.js"></script>
+	<script type="text/javascript" src="../js/Admin4.js"></script>
 	<!--导入登陆  -->
 	<link rel="stylesheet" type="text/css" href="style-css/loginDialog.css"/>
-	<link rel="stylesheet" type="text/css" href="style-css/Register.css"/>
 		<!-- 导入登陆的js -->
-	<script type="text/javascript" src="../js/Login.js"></script>
+	<script type="text/javascript" src="../js/AdminLogin.js"></script>
 	<script type="text/javascript" src="../js/Register.js"></script>
 </head>
 <body>
@@ -30,8 +29,8 @@
 		</div>
 		<div id="head-ul-right">
 			<ul id="ul-right">
-				<li class="head-li" id="Hlogin"><a id="Login" class="one" href="#home">登陆</a></li>
-				<li class="head-li" id="Hregister"><a id="Register" class="one" href="#news">注册</a></li>
+				<!-- <li class="head-li" id="Hlogin"><a id="Login" class="one" href="#home">登陆</a></li>
+				<li class="head-li" id="Hregister"><a id="Register" class="one" href="#news">注册</a></li> -->
 				<li class="head-li" id="Hmessage"><a class="one" href="#contact">消息</a></li>
 				<li class="head-li" id="Hdynamic"><a class="one" href="#about">动态</a></li>
 			</ul>
@@ -80,42 +79,6 @@
 		<div class="row">
 			<a href="#" id="loginbtn">登录</a>
 		</div>
-	</div>
-	<!-- 注册对话框 -->
-	<div id="RegisterDiv">
-		<div class="row1">
-			注册<a href="javascript:void(0)" title="关闭窗口" class="close_btn1" id="closeBtn1">×</a>
-		</div>
-		<div>
-			<form id="f_sub" action="/MyFirstWeb/Register/UsernameRegister.do"  method="post">
-				<div class="row">
-					用户名:&nbsp;&nbsp;<span class="inputBox">
-						<input type="text" name="name"  size="20" id="username" class="inputtxt"/>
-						</span><spqn id ="s_username" ></spqn>
-				</div>
-				<div class="row">
-					密码:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="inputBox">
-						<input type="password"   name="password" size="20" id="userpassword"  class="inputtxt"/>
-						</span><spqn id ="s_password"></spqn>
-				</div>
-			   	<div class="row">
-					确认密码<span class="inputBox">
-						<input type="password"   size="20" id="reuserpassword" class="inputtxt"/>
-						</span><spqn id ="s_repassword"></spqn>
-				</div>
-				<div class="row">
-					邀请码:&nbsp;&nbsp;&nbsp;&nbsp;<span class="inputBox">
-						<input type="text"    size="20" id="identily"  class="inputtxt"/>
-						</span><spqn id ="s_identily" ></spqn>
-				</div>
-			   	<div class="row">
-				<input type="button" id="sub" value="注册" class="Bregister"/><spqn id ="s_sub"></spqn>
-				
-				</div>	
-				
-			</form>			
-		</div>
-		<br>
 	</div>
 </body>
 </html>

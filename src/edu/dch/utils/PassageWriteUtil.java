@@ -36,6 +36,6 @@ public class PassageWriteUtil {
 				BufferedWriter bw =new BufferedWriter(out);
 				bw.write(passgaeStr);
 				bw.flush();
-		        System.out.println("passgaeStr="+passgaeStr);
+		       
 	}	
 }

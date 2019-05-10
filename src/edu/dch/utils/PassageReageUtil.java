@@ -39,7 +39,7 @@ public class PassageReageUtil {
 			System.out.println(passageStr);
 		}
 		fr.close();	
-		System.out.println(s);
+		
 		System.out.println("¶ÁÍê³É");
 		return passageStr;
 	}

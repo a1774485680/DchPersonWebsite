@@ -70,16 +70,16 @@ public class IssueServiceImp implements IIssueServices {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(s);
+	
 		return s;
 	}
 
 	@Override
 	public String PassageLoad(String username) {
-		List<String> StringList= passagedao.SelectByUserName(username);
+		List<Passage> StringList= passagedao.SelectByUserName(username);
 		session1.commit();
-		for ( String s: StringList) {
-			System.out.println(s);
+		for (Passage passage : StringList) {
+			System.out.println(passage.publish);
 		}
 		String strJSON="";
 		ObjectMapper mapper=new ObjectMapper();
@@ -89,13 +89,14 @@ public class IssueServiceImp implements IIssueServices {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("strJSON="+strJSON);
 		return strJSON;
 	}
 	//该方法的作用是获得用户又多少页
 	@Override
 	public String goPageByIssue(String username,int goPage) {
 		goPage=goPage*10-10;
-		List<String> StringList=passagedao.pageIssue(username,goPage);
+		List<Passage> StringList=passagedao.pageIssue(username,goPage);
 		session1.commit();
 		String strJSON="";
 		ObjectMapper mapper=new ObjectMapper();
@@ -114,7 +115,7 @@ public class IssueServiceImp implements IIssueServices {
 		session1.commit();
 		String fal="";
 		if(passage1.toString().equals("[]")){
-			System.out.println("執行了這個方法");
+		
 			//定义文章路径
 			String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
 			//将文章类容写到响应的文章路径中
@@ -130,7 +131,7 @@ public class IssueServiceImp implements IIssueServices {
 			String nowdata=df.format(new Date());
 			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
 			session.commit();
-			passagedao.insertpassage(new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0));
+			passagedao.insertpassage(new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0,false));
 			session1.commit();
 			fal="true";
 		}else{
@@ -155,7 +156,7 @@ public class IssueServiceImp implements IIssueServices {
 			String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
 			//将文章类容写到响应的文章路径中
 			try {
-				System.out.println("passageStr="+passageStr);
+				
 				passWrite.writeTotxt(passageStr, passageName);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -167,8 +168,8 @@ public class IssueServiceImp implements IIssueServices {
 			String nowdata=df.format(new Date());
 			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
 			session.commit();
-			Passage pass=new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0);
-			System.out.println(pass);
+			Passage pass=new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0,false);
+		
 			passagedao.updatepassage(pass);//;
 			session1.commit();
 			fal="true";

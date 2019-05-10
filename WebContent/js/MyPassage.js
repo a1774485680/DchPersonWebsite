@@ -116,24 +116,7 @@
 			
 			
 		 });
-		 $.each(arr,function(){
-			 var i=this; 
-			 //alert("#"+i+"-span"+arrspan[0]);
-			 $("#"+i+"-span"+arrspan[0]).html("作者  "+data[fal].username);
-			 $("#"+i+"-span"+arrspan[1]).html("日期 ："+data[fal].pdate);
-			 //$("#"+i+"-span"+arrspan[2]).html("点赞"+data[fal].plike);
-			 $("#"+i+"-span"+arrspan[3]).html("浏览量"+data[fal].pvisit); 
-			 $("#"+i+"-span"+arrspan[4]).html("分类"+data[fal].pclassify);
-			 $("#"+i+"-a").text(data[fal].ptitle);
-			 var authorName=data[fal].username;
-			 var title=data[fal].ptitle;
-			 var myherf='showPassage.html?authorName='+authorName+"&title="+title;
-			 $("#"+i+"-a").attr('href',myherf);
-			 $("#"+i+"-a").attr('target','_blank');
-			 $("#"+i+"-span"+arrspan[5]).html("简介"+data[fal].pbrief);
-			 
-			 fal+=1;
-		 });
+		 page(data);
 		 
 		},"json");
 		//设置分页的系统 获得当前的行数

@@ -48,8 +48,13 @@ $(function (){
 			 $.each(Harr, function(){     
 				    var i=this;
 				    if(fal<line){
-				    	
-						$("#"+i).html(data[fal]);
+				    	var a="";
+				    	if(data[fal].publish){
+				    		a="(已审核)"
+				    	}else{
+				    		a="(待审核)"
+				    	}
+						$("#"+i).html(data[fal].ptitle+a);
 						
 						$("#"+i).show();
 						//设置点击事件
@@ -62,7 +67,8 @@ $(function (){
 							//var title=data[fal];
 							//console.log(title);
 							var title=$(this).html();
-							
+							title = title.substr(0, title.length - 5); 
+							console.log(title);
 							$.post("/MyFirstWeb/Issue/updataPassage.do",{title:title},function(data){
 								
 								editor.txt.html(data);

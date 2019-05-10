@@ -34,7 +34,10 @@ public class TestPassage {
 	}
 	@Test
 	public void testone() {
-		passdao.insertpassage(new Passage(3,"sa","c:/sa/sa/sa/sa","²âÊÔ","2019/4/1","spring","Õâ¸ö¼ò½éºÜ¼ò¶Ì",12,12));
+		
+			
+			passdao.insertpassage(new Passage(3,"sa","c:/sa/sa/sa/sa","²âÊÔ","2019/4/1","spring","Õâ¸ö¼ò½éºÜ¼ò¶Ì",12,12,true));
+		
 	}
 	@Test
 	public void testone123() {
@@ -114,6 +117,11 @@ public class TestPassage {
 	}
 	@Test
 	public void test09() {
-		passdao.updatepassage(new Passage(6,"sa","c:/sa/sa/sa/sa","¹ş¹ş¹ş£¬²âÊÔ","2019/4/1","spring","Õâ¸ö¼ò½éºÜ¼ò¶Ì",12,12));
+		passdao.updatepassage(new Passage(6,"sa","c:/sa/sa/sa/sa","¹ş¹ş¹ş£¬²âÊÔ","2019/4/1","spring","Õâ¸ö¼ò½éºÜ¼ò¶Ì",12,12,false));
+	}
+	@Test
+	public void test10() {
+		 passdao.changeStatus("deng", "²âÊÔ");
+
 	}
 }
