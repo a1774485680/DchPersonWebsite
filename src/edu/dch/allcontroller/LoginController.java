@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -28,15 +30,10 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/LoginController")
 public class LoginController {
+	@Autowired
+	@Qualifier("LoginServiceImp")
 	public ILoginService loginService;
-	
-	public LoginController() {
-		super();
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		loginService=(LoginServiceImp)app.getBean("LoginServiceImp");
-		
-		// TODO Auto-generated constructor stub
-	}
+
 
 	@RequestMapping("/login.do")
 	public void login(HttpServletResponse response,HttpServletRequest res) throws IOException{

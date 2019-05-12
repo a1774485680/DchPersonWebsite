@@ -7,6 +7,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -18,11 +20,10 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/AdminCotroller")
 public class AdminCotroller {
+	@Autowired
+	@Qualifier("AdminServiceImp")
 	public IAdminService adminService;
-	public AdminCotroller(){
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		adminService=(IAdminService)app.getBean("AdminServiceImp");
-	}
+	
 	@RequestMapping("/changeStatus.do")
 	public void changeStatus(HttpServletResponse response,HttpServletRequest res) throws IOException{
 		String title = res.getParameter("gettitile");
@@ -36,6 +37,7 @@ public class AdminCotroller {
 	@RequestMapping("/passageLoad.do")
 	public void passageLoad(HttpServletResponse response) throws IOException{
 		//调用方法获得json格式的数据（从数据库来）
+		System.out.println("???");
 		String StringJson=adminService.PassageLoad(1);
 		//设置字符编码
 		response.setCharacterEncoding("utf-8");

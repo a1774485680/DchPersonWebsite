@@ -3,8 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	function getusername(){
+		//返回的数据为有已发布文章的页码
+		$.post("/MyFirstWeb/test/test01.do",function(data){//如果没有登陆的事件处理方法
+			
+		},"json");
+	};
+</script>
 </head>
 <body>
-	中国
+	中国  <input type="button" value="提交" onclick="getusername();"/>
 </body>
 </html>

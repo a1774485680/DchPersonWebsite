@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.context.ApplicationContext;
@@ -23,19 +25,16 @@ import edu.dch.utils.PassageWriteUtil;
 
 @Component("IssueServiceImp")
 public class IssueServiceImp implements IIssueServices {
-	
+	@Resource(name="IPassageDao")
 	public IPassageDao passagedao;
-	private SqlSession session,session1;
+	
 	private PassageWriteUtil passWrite;
+	@Resource(name="IUserLoginDao")
 	private IUserLoginDao LoginDao;
 	public IssueServiceImp() {
 		super();
 		
 		passWrite=new PassageWriteUtil();
-		session=MybatisSqlSessionutils.GetSqlSession();
-		LoginDao=(IUserLoginDao) session.getMapper(IUserLoginDao.class);
-		session1=MybatisSqlSessionutils.GetSqlSession();
-		passagedao=(IPassageDao) session1.getMapper(IPassageDao.class);
 	}
 	
 	//获得有多少页并且 把该页设置为json格式
@@ -44,7 +43,6 @@ public class IssueServiceImp implements IIssueServices {
 		// TODO Auto-generated method stub
 		//获得一共有多少文章
 		int allCount = passagedao.CountAllpage(name);
-		session1.commit();
 		//将文章设置为页
 		int Allpage=0;
 		if(name==null){//如果没有登陆转到登陆界面
@@ -76,8 +74,10 @@ public class IssueServiceImp implements IIssueServices {
 
 	@Override
 	public String PassageLoad(String username) {
+
+		
 		List<Passage> StringList= passagedao.SelectByUserName(username);
-		session1.commit();
+
 		for (Passage passage : StringList) {
 			System.out.println(passage.publish);
 		}
@@ -97,7 +97,7 @@ public class IssueServiceImp implements IIssueServices {
 	public String goPageByIssue(String username,int goPage) {
 		goPage=goPage*10-10;
 		List<Passage> StringList=passagedao.pageIssue(username,goPage);
-		session1.commit();
+
 		String strJSON="";
 		ObjectMapper mapper=new ObjectMapper();
 		try {
@@ -112,7 +112,7 @@ public class IssueServiceImp implements IIssueServices {
 	@Override
 	public String writePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
 		List<Passage> passage1 = passagedao.selectByAuthorAndName(username, Ptitle);
-		session1.commit();
+
 		String fal="";
 		if(passage1.toString().equals("[]")){
 		
@@ -130,9 +130,9 @@ public class IssueServiceImp implements IIssueServices {
 			System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
 			String nowdata=df.format(new Date());
 			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
-			session.commit();
+
 			passagedao.insertpassage(new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0,false));
-			session1.commit();
+	
 			fal="true";
 		}else{
 			fal="false";
@@ -143,10 +143,7 @@ public class IssueServiceImp implements IIssueServices {
 
 	@Override
 	public String updatewritePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
-		session=MybatisSqlSessionutils.GetSqlSession();
-		LoginDao=(IUserLoginDao) session.getMapper(IUserLoginDao.class);
-		session1=MybatisSqlSessionutils.GetSqlSession();
-		passagedao=(IPassageDao) session1.getMapper(IPassageDao.class);
+		
 		List<Passage> passage1 = passagedao.selectByAuthorAndName(username, Ptitle);
 		String fal="";
 		if(passage1.toString().equals("[]")){	
@@ -167,11 +164,11 @@ public class IssueServiceImp implements IIssueServices {
 			System.out.println("当前日期："+df.format(new Date()));// new Date()为获取当前系统时间
 			String nowdata=df.format(new Date());
 			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
-			session.commit();
+
 			Passage pass=new Passage(userId, "", passageName, Ptitle, nowdata, Pclassify, pbrief, 0, 0,false);
 		
 			passagedao.updatepassage(pass);//;
-			session1.commit();
+	
 			fal="true";
 		}
 		return fal;

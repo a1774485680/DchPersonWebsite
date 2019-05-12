@@ -12,9 +12,17 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
-		<context:component-scan base-package="edu.dch.bean"/>
-        <context:component-scan base-package="edu.dch.services"/>
-        <context:component-scan base-package="edu.dch.utils"/>
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+			<property name="driverClass" value="com.mysql.jdbc.Driver" />
+			<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/website?useSSL=false" />
+			<property name="user" value="root" />
+			<property name="password" value="123asd@#$" />
+			<property name="minPoolSize" value="3" />  
+   
+    		<property name="maxPoolSize" value="100" /> 
+    		
+			<property name="maxIdleTime" value="5" /> 
+		</bean>
         
         <!-- 扫描edu.deng包和他的子包 -->
         <!-- <context:component-scan base-package="edu.deng"></context:component-scan> -->

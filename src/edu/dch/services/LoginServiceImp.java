@@ -1,6 +1,8 @@
 package edu.dch.services;
 
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
@@ -10,23 +12,15 @@ import edu.dch.dao.IUserLoginDao;
 import edu.dch.utils.MybatisSqlSessionutils;
 @Component("LoginServiceImp")
 public class LoginServiceImp implements ILoginService {
+	@Resource(name="IUserLoginDao")
 	public IUserLoginDao loginDao;
-	public SqlSession session;
-	public LoginServiceImp() {
-		super();
-		session=MybatisSqlSessionutils.GetSqlSession();
-		
-		loginDao=session.getMapper(IUserLoginDao.class);
-	}
 
 	@Override
 	public int VaildateByUserService(Userlogin user) {
-		session=MybatisSqlSessionutils.GetSqlSession();
-		
-		loginDao=session.getMapper(IUserLoginDao.class);
+
 		int validataByUser = loginDao.validataByUser(user);
 		System.out.println("ох  "+validataByUser);
-		session.commit();
+
 		System.out.println("╨С  "+validataByUser);
 		return validataByUser;
 		// TODO Auto-generated method stub

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.map.HashedMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,10 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/Register")
 public class RegisterController {
+	@Autowired
+	@Qualifier("RegisterServiceImp")
 	IRegisterService registetServices;
-	public RegisterController(){
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		registetServices=(IRegisterService) app.getBean("RegisterServiceImp");
-	}
+	
 	@RequestMapping("/UsernameVerify.do")
 	public void usernameVerify(String username,HttpServletResponse response ) throws IOException{
 		

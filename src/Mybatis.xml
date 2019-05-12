@@ -18,9 +18,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="edu/dch/dao/userloginMapping.xml"/>
-		<mapper resource="edu/dch/dao/PassageMapping.xml"/>
-		<mapper resource="edu/dch/dao/adminMapping.xml"/>
+		<package name="edu.dch.dao"/>
 	</mappers>
 	
 </configuration>

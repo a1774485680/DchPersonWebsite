@@ -50,9 +50,11 @@ $(function (){
 				    if(fal<line){
 				    	var a="";
 				    	if(data[fal].publish){
+				    		console.log(data[fal].publish);
 				    		a="(已审核)"
 				    	}else{
 				    		a="(待审核)"
+				    		console.log(data[fal].publish);
 				    	}
 						$("#"+i).html(data[fal].ptitle+a);
 						
@@ -173,7 +175,7 @@ $(function (){
 			
 			if(down<=allpage){
 				$.post("/MyFirstWeb/Issue/downPage.do",{downPage:down},function(data){
-					page(data);
+					page(data)
 					
 				},"json");
 				$("#Tpage").val(down);				

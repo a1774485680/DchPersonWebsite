@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,10 @@ import edu.dch.services.IShowPassageServices;
 @Controller
 @RequestMapping("/ShowPassage")
 public class ShowPassageController {
+	@Autowired
+	@Qualifier("IShowPasServiceImp")
 	IShowPassageServices IShowService;
-	public ShowPassageController(){
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		IShowService=(IShowPassageServices)app.getBean("IShowPasServiceImp");
-	}
+	
 	@RequestMapping("/passageLoad.do")
 	public void passageLoad(HttpServletResponse response,HttpServletRequest res) throws IOException{
 		String name = res.getParameter("name");

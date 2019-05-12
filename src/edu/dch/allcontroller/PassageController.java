@@ -9,6 +9,8 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -20,11 +22,9 @@ import net.sf.json.JSONObject;
 @Controller
 @RequestMapping("/Passage")
 public class PassageController {
+	@Autowired
+	@Qualifier("PassageLoadImp")
 	IPassageServices passageService;
-	public PassageController(){
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		passageService=(IPassageServices)app.getBean("PassageLoadImp");
-	}
 	@RequestMapping("/passageLoad.do")
 	public void passageLoad(HttpServletResponse response) throws IOException{
 		//调用方法获得json格式的数据（从数据库来）

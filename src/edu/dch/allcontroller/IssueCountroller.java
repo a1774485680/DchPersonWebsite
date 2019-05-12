@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -25,15 +27,13 @@ import edu.dch.utils.ParamsUtil;
 @Controller
 @RequestMapping("/Issue")
 public class IssueCountroller {
+	@Autowired
+	@Qualifier("IssueServiceImp")
 	IIssueServices IssueService;
+	@Autowired
+	@Qualifier("IShowPasServiceImp")
 	IShowPassageServices IShowService;
-	public IssueCountroller(){
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		IssueService=(IIssueServices)app.getBean("IssueServiceImp");
-		IShowService=(IShowPassageServices)app.getBean("IShowPasServiceImp");
-//		IssueService=new IssueServiceImp();
-//		IShowService=new IShowPasServiceImp();
-	}
+
 	@RequestMapping("/AllpageByIssue.do")
 	public void AllpageByIssue(HttpServletResponse response,HttpServletRequest res) throws IOException{
 		HttpSession session=res.getSession();

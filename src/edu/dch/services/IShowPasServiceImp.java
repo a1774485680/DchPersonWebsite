@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -17,12 +19,10 @@ import edu.dch.utils.PassageReageUtil;
 @Component("IShowPasServiceImp")
 public class IShowPasServiceImp implements IShowPassageServices {
 	public PassageReageUtil passread;
+	@Resource(name="IPassageDao")
 	public IPassageDao passdao;
-	private SqlSession session;
 	public IShowPasServiceImp(){
 		passread=new PassageReageUtil();
-		session=MybatisSqlSessionutils.GetSqlSession();
-		passdao=session.getMapper(IPassageDao.class);//dao²ãµÄ³õÊ¼»¯
 	}
 	@Override
 	public String SelectByNameAndTitle(String name, String title) {
@@ -56,7 +56,6 @@ public class IShowPasServiceImp implements IShowPassageServices {
 						e.printStackTrace();
 					}
 					passdao.updateByAuthorAndNameForVisit(name,title);
-					session.commit();
 		return a;
 	}
 

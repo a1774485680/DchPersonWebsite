@@ -3,6 +3,8 @@ package edu.dch.services;
 import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.SqlSession;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -14,21 +16,17 @@ import edu.dch.utils.MybatisSqlSessionutils;
 
 @Component("AdminServiceImp")
 public class AdminServiceImp implements IAdminService {
+	@Resource(name="iadminDao")
 	public IadminDao admindao;
-	private SqlSession session;
+	@Resource(name="IPassageDao")
 	public IPassageDao passdao;
-	private SqlSession session1;
 	public AdminServiceImp(){
-		session=MybatisSqlSessionutils.GetSqlSession();
-		admindao=session.getMapper(IadminDao.class);
-		session1=MybatisSqlSessionutils.GetSqlSession();
-		passdao=session1.getMapper(IPassageDao.class);
 	}
 	@Override
 	public int verifyAdmin(String name, String password) {
 		// TODO Auto-generated method stub
 		int a=admindao.selectbynameAndpassword(name,password);
-		session.commit();
+		
 		return a;
 	}
 	@Override
@@ -36,18 +34,17 @@ public class AdminServiceImp implements IAdminService {
 		// TODO Auto-generated method stub
 		int a=1;
 		passdao.changeStatus(author,title);
-		session1.commit();
+
 
 		return a;
 	}
 	@Override
 	public String PassageLoad(int page) {
-		session1=MybatisSqlSessionutils.GetSqlSession();
-		passdao=session1.getMapper(IPassageDao.class);//dao层的初始化
+
 		
 		page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
 		List<Passage> selectPassage = passdao.selectPassageByPageByPublish(page);//得到数据
-		session1.commit();
+	
 		//创建一个json对象
 		ObjectMapper mapper=new ObjectMapper();
 			String a="";//json返回的数组
@@ -75,7 +72,7 @@ public class AdminServiceImp implements IAdminService {
 					// 定义页码数量
 					//定义 i,j临时变量算出到底页码数量为多少
 				}
-				session1.commit();
+				
 				int i=allCount/10;
 				int j=allCount%10;
 				if(j!=0){
@@ -112,7 +109,7 @@ public class AdminServiceImp implements IAdminService {
 			page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
 			
 			List<Passage> PassageByPageandClassify = passdao.selectPassageByPageandClassifyByPublish(classify2, page);
-			session1.commit();
+
 			
 			
 			// TODO Auto-generated method stub

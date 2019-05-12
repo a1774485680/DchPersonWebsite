@@ -12,10 +12,14 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/tx
     http://www.springframework.org/schema/tx/spring-tx.xsd">
-		<context:component-scan base-package="edu.dch.bean"/>
-        <context:component-scan base-package="edu.dch.services"/>
-        <context:component-scan base-package="edu.dch.utils"/>
-        
+		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="configLocation" value="classpath:resource/Mybatis.xml"></property>
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+		<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+			<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+			<property name="basePackage" value="edu.dch.dao"></property>
+		</bean>
         <!-- 扫描edu.deng包和他的子包 -->
         <!-- <context:component-scan base-package="edu.deng"></context:component-scan> -->
         

@@ -58,6 +58,7 @@
 		console.log(getauthor);
 		$.post("/MyFirstWeb/AdminCotroller/changeStatus.do",{getauthor:getauthor,gettitile,gettitile},function(data){
 			if(data!=""){
+				classify("classify-1");
 				alert("操作成功");
 			}
 		},"text");
