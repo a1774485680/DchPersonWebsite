@@ -56,5 +56,10 @@ public class Testone {
 		int vaildateByUserService = a.VaildateByUserService(new Userlogin("110", "123456a"));
 		System.out.println(vaildateByUserService);
 	}
+	@Test 
+	public void test02(){
+		String userHome = System.getProperties().getProperty("user.home");
+		System.out.println(userHome);
+	}
 	
 }

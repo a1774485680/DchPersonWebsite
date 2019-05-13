@@ -1,8 +1,10 @@
 package edu.dch.test;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +27,8 @@ public class TestPassage {
 	public void before() {
 		session=MybatisSqlSessionutils.GetSqlSession();
 		passdao=session.getMapper(IPassageDao.class);
-		ApplicationContext app=new ClassPathXmlApplicationContext("resource/spring-All.xml");
-		passageService=(IPassageServices)app.getBean("PassageLoadImp");
+		
+		passageService=new PassageLoadImp();
 	}
 	@After
 	public void after() {
@@ -122,6 +124,23 @@ public class TestPassage {
 	@Test
 	public void test10() {
 		 passdao.changeStatus("deng", "测试");
+
+	}
+	@Test
+	public void test11() {
+		List<Passage> selectPassage = passdao.selectPassageByPage(1);//得到数据
+		System.out.println();
+		//创建一个json对象
+		ObjectMapper mapper=new ObjectMapper();
+			String a="";//json返回的数组
+			try {
+				a = mapper.writeValueAsString(selectPassage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		 System.out.println(a);
 
 	}
 }

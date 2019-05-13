@@ -10,8 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -52,7 +51,8 @@ public class LoginController {
 			map.put("vail", vail);
 		}
 		JSONObject myJson=JSONObject.fromObject(map);
-		String json=myJson.toString();
+		//dsadasdasd
+		String json=myJson.toString();//{"vail":1}
 		response.setCharacterEncoding("utf-8");
 		
 		PrintWriter out =response.getWriter();

@@ -2,13 +2,11 @@ package edu.dch.services;
 
 import java.io.IOException;
 import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
+
 import org.junit.Test;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +24,9 @@ public class PassageLoadImp implements IPassageServices {
 		
 		
 		page=page*10-10;//因为每页有10篇文章，从 0行 10行 以此类推查起
+		System.out.println("page"+page);
 		List<Passage> selectPassage = passdao.selectPassageByPage(page);//得到数据
-	
+		System.out.println();
 		//创建一个json对象
 		ObjectMapper mapper=new ObjectMapper();
 			String a="";//json返回的数组

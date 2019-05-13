@@ -1,5 +1,6 @@
 package edu.dch.services;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,10 +10,12 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
-import org.codehaus.jackson.map.ObjectMapper;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.dch.bean.Passage;
 import edu.dch.bean.Userlogin;
@@ -117,7 +120,9 @@ public class IssueServiceImp implements IIssueServices {
 		if(passage1.toString().equals("[]")){
 		
 			//定义文章路径
-			String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
+			String passageName =System.getProperties().getProperty("user.home");
+			passageName=passageName+File.separator+"passagetxt"+File.separator+username+"@"+Ptitle+".txt";
+			System.out.println(passageName);
 			//将文章类容写到响应的文章路径中
 			try {
 				passWrite.writeTotxt(passageStr, passageName);
@@ -150,10 +155,11 @@ public class IssueServiceImp implements IIssueServices {
 			fal="true";
 		}else{
 			//定义文章路径
-			String passageName ="D:\\Program Files\\eclipse-oxygen\\workspace\\MyFirstWeb\\PassageTxt\\"+username+"@"+Ptitle+".txt";
+			String passageName =System.getProperties().getProperty("user.home");
+			passageName =passageName+File.separator+"passagetxt"+File.separator+username+"@"+Ptitle+".txt";
 			//将文章类容写到响应的文章路径中
 			try {
-				
+				System.out.println(passageName);
 				passWrite.writeTotxt(passageStr, passageName);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
